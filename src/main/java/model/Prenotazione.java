@@ -41,6 +41,4 @@ public class Prenotazione {
  public void checkIn() {
 
     }
-
-
 }

@@ -1,35 +1,31 @@
 package gui;
 
 import controller.Controller;
-
 import javax.swing.*;
 
 public class Home {
-    private JPanel mainPanel;
-    private static JFrame frameHome;
-    private Controller controller;
-    private JPanel Home;
-    private JButton VOLA;
     private JPanel panel1;
+    private JButton button1;
+    private JPasswordField PASSWORD;
+    private JTextField textField1;
+    private JComboBox CMBlogin;
+
+    private JFrame frameHome;
+    private Controller controller;
 
     public static void main(String[] args) {
-        frameHome = new JFrame("Home");
-        frameHome.setContentPane(new Home().mainPanel);
-        frameHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameHome.pack();
-        frameHome.setVisible(true);
-
-
+        SwingUtilities.invokeLater(() -> {
+            Home home = new Home();
+            home.frameHome = new JFrame("Home");
+            home.frameHome.setContentPane(home.panel1);  // uso panel1 invece di mainPanel
+            home.frameHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            home.frameHome.pack();
+            home.frameHome.setVisible(true);
+        });
     }
 
     public Home() {
         controller = new Controller();
-        // Add action listeners or other initialization code here
-
-    }
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+        //
     }
 }
