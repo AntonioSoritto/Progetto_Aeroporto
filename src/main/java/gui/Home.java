@@ -10,6 +10,7 @@ public class Home {
     private Controller controller;
     private JPanel Home;
     private JButton VOLA;
+    private JPanel panel1;
 
     public static void main(String[] args) {
         frameHome = new JFrame("Home");
