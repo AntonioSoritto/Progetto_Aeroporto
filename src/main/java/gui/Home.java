@@ -29,6 +29,6 @@ public class Home {
 
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here 
+        // TODO: place custom component creation code here
     }
 }
