@@ -1,5 +1,7 @@
 package GUI;
 
+import controller.Controller;
+
 import javax.swing.*;
 
 public class HOME {
@@ -7,5 +9,50 @@ public class HOME {
     private JComboBox comboBox1;
     private JTextField textField1;
     private JPasswordField passwordField1;
-    private JButton VOLAButton;
+    private JButton button1;
+    private JPanel panel;
+
+    public HOME() {
+        button1.addActionListener(e -> {
+            String selected = (String) comboBox1.getSelectedItem();
+            String email = textField1.getText();
+            String password = new String(passwordField1.getPassword());
+
+            if ("UTENTE".equals(selected)) {
+                if ("a@b.com".equals(email) && "qwerty".equals(password)) {
+                    Controller.apriUtente();
+                    SwingUtilities.getWindowAncestor(button1).dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email o password errati", "Errore login", JOptionPane.ERROR_MESSAGE);
+                }
+            }else if("AMMINISTRATORE".equals(selected)){
+                if ("a@b.com".equals(email) && "qwerty".equals(password)) {
+                    Controller.apriAmministratore();
+                    SwingUtilities.getWindowAncestor(button1).dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email o password errati", "Errore login", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+    }
+
+    public JPanel getPanel() {
+        return panel;  // Sostituisci con il nome vero del pannello root
+    }
+
+
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("HOME");
+            HOME home = new HOME();
+            frame.setContentPane(home.getPanel()); // getPanel() deve restituire il JPanel principale
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+
+
 }
