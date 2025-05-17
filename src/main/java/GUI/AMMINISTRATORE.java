@@ -1,5 +1,7 @@
 package GUI;
 
+import controller.Controller;
+
 import javax.swing.*;
 
 public class AMMINISTRATORE {
@@ -8,17 +10,19 @@ public class AMMINISTRATORE {
     private JButton partenzaButton;
     private JButton arrivoButton;
     private JPanel PANEL1;
+    private JComboBox comboBox1;
+    private JTextField textField1;
+    private JButton cercaButton;
+
+
 
     public AMMINISTRATORE() {
-        arrivoButton.addActionListener(e -> {
-            V_ORIGINE v = new V_ORIGINE();
-            JFrame frame = new JFrame("Inserisci Partenza");
-            frame.setContentPane(v.getPanel());
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
+        partenzaButton.addActionListener(e -> Controller.apriPartenza());
+        arrivoButton.addActionListener(e -> Controller.apriArrivo());
+        cercaButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "Volo non trovato", "Attenzione", JOptionPane.WARNING_MESSAGE);
         });
+
 
     }
 
