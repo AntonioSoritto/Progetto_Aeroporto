@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.PRENOTAZIONE">
+  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-16711681"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="1513e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black"/>
+          <foreground color="-393229"/>
+          <text value="Trova un volo per le tue esigenze!"/>
+        </properties>
+      </component>
+      <grid id="fcee3" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16711681"/>
+          <foreground color="-16772865"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="9fdc" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16772865"/>
+              <model>
+                <item value="00:00"/>
+                <item value="00:30"/>
+                <item value="01:00"/>
+                <item value="01:30"/>
+                <item value="02:00"/>
+                <item value="02:30"/>
+                <item value="03:00"/>
+                <item value="03:30"/>
+                <item value="04:00"/>
+                <item value="04:30"/>
+                <item value="05:00"/>
+                <item value="05:30"/>
+                <item value="06:00"/>
+                <item value="06:30"/>
+                <item value="07:00"/>
+                <item value="07:30"/>
+                <item value="08:00"/>
+                <item value="08:30"/>
+                <item value="09:00"/>
+                <item value="09:30"/>
+                <item value="10:00"/>
+                <item value="10:30"/>
+                <item value="11:00"/>
+                <item value="11:30"/>
+                <item value="12:00"/>
+                <item value="12:30"/>
+                <item value="13:00"/>
+                <item value="13:30"/>
+                <item value="14:00"/>
+                <item value="14:30"/>
+                <item value="15:00"/>
+                <item value="15:30"/>
+                <item value="16:00"/>
+                <item value="16:30"/>
+                <item value="17:00"/>
+                <item value="17:30"/>
+                <item value="18:00"/>
+                <item value="18:30"/>
+                <item value="19:00"/>
+                <item value="19:30"/>
+                <item value="20:00"/>
+                <item value="20:30"/>
+                <item value="21:00"/>
+                <item value="21:30"/>
+                <item value="22:00"/>
+                <item value="22:30"/>
+                <item value="23:00"/>
+                <item value="23:30"/>
+              </model>
+            </properties>
+          </component>
+          <component id="d0f45" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Segoe UI Black"/>
+              <foreground color="-393229"/>
+              <text value="Scegli ora"/>
+            </properties>
+          </component>
+          <component id="cf93c" class="javax.swing.JTextField" binding="inserisciDestinazioneTextField" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <foreground color="-16772865"/>
+              <text value="inserisci destinazione"/>
+            </properties>
+          </component>
+          <grid id="eb0fb" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16711681"/>
+              <foreground color="-393229"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="20fd" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-16772865"/>
+                  <model>
+                    <item value="01"/>
+                    <item value="02"/>
+                    <item value="03"/>
+                    <item value="04"/>
+                    <item value="05"/>
+                    <item value="06"/>
+                    <item value="07"/>
+                    <item value="08"/>
+                    <item value="09"/>
+                    <item value="10"/>
+                    <item value="11"/>
+                    <item value="12"/>
+                    <item value="13"/>
+                    <item value="14"/>
+                    <item value="15"/>
+                    <item value="16"/>
+                    <item value="17"/>
+                    <item value="18"/>
+                    <item value="19"/>
+                    <item value="20"/>
+                    <item value="21"/>
+                    <item value="22"/>
+                    <item value="23"/>
+                    <item value="24"/>
+                    <item value="25"/>
+                    <item value="26"/>
+                    <item value="27"/>
+                    <item value="28"/>
+                    <item value="29"/>
+                    <item value="30"/>
+                    <item value="31"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="7bb11" class="javax.swing.JComboBox" binding="comboBox4" default-binding="true">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-16772865"/>
+                  <model>
+                    <item value="01"/>
+                    <item value="02"/>
+                    <item value="03"/>
+                    <item value="04"/>
+                    <item value="05"/>
+                    <item value="06"/>
+                    <item value="07"/>
+                    <item value="08"/>
+                    <item value="09"/>
+                    <item value="10"/>
+                    <item value="11"/>
+                    <item value="12"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="95207" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-16772865"/>
+                  <model>
+                    <item value="2025"/>
+                    <item value="2026"/>
+                    <item value="2027"/>
+                    <item value="2028"/>
+                    <item value="2029"/>
+                    <item value="2030"/>
+                    <item value="2031"/>
+                    <item value="2032"/>
+                    <item value="2033"/>
+                    <item value="2034"/>
+                    <item value="2035"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="18434" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-393229"/>
+                  <font name="Segoe UI Black"/>
+                  <foreground color="-394241"/>
+                  <text value="Data"/>
+                </properties>
+              </component>
+              <component id="cfd9f" class="javax.swing.JButton" binding="aggiungiButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-16772865"/>
+                  <text value="aggiungi"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="d3322" class="javax.swing.JButton" binding="trovaButton" default-binding="true">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16772865"/>
+              <text value="Trova"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <vspacer id="2f7b7">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <hspacer id="21cdc">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+    </children>
+  </grid>
+</form>

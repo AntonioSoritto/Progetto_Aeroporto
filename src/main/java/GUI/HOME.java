@@ -3,17 +3,18 @@ package GUI;
 import controller.Controller;
 
 import javax.swing.*;
+import java.lang.invoke.VolatileCallSite;
 
 public class HOME {
     private JLabel Messaggio;
     private JComboBox comboBox1;
     private JTextField textField1;
     private JPasswordField passwordField1;
-    private JButton button1;
+    private JButton VOLAButton;
     private JPanel panel;
 
     public HOME() {
-        button1.addActionListener(e -> {
+        VOLAButton.addActionListener(e -> {
             String selected = (String) comboBox1.getSelectedItem();
             String email = textField1.getText();
             String password = new String(passwordField1.getPassword());
@@ -21,14 +22,14 @@ public class HOME {
             if ("UTENTE".equals(selected)) {
                 if ("a@b.com".equals(email) && "qwerty".equals(password)) {
                     Controller.apriUtente();
-                    SwingUtilities.getWindowAncestor(button1).dispose();
+                    SwingUtilities.getWindowAncestor(VOLAButton).dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Email o password errati", "Errore login", JOptionPane.ERROR_MESSAGE);
                 }
             }else if("AMMINISTRATORE".equals(selected)){
                 if ("a@b.com".equals(email) && "qwerty".equals(password)) {
                     Controller.apriAmministratore();
-                    SwingUtilities.getWindowAncestor(button1).dispose();
+                    SwingUtilities.getWindowAncestor(VOLAButton).dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Email o password errati", "Errore login", JOptionPane.ERROR_MESSAGE);
                 }

@@ -13,8 +13,22 @@ public class V_ORIGINE {
     private JComboBox comboBox4;
     private JButton aggiungiButton;
     private JComboBox comboBox5;
+    private JPanel panel1;
+
+    public V_ORIGINE() {
+        aggiungiButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "Volo aggiunto correttamente", "✅", JOptionPane.INFORMATION_MESSAGE);
+
+        });
+    }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
+    public JPanel getPanel() {
+        return panel1;  // sostituisci con il nome vero del root panel nel .form
+    }
+
 }
