@@ -38,7 +38,6 @@
               <foreground color="-16772865"/>
               <model>
                 <item value="Numero volo"/>
-                <item value="Nome prenotazione"/>
                 <item value="ID prenotazione"/>
               </model>
             </properties>
