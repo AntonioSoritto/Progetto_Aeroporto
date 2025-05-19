@@ -20,6 +20,7 @@ public PRENOTAZIONE() {
 
 
     private JPanel panel1; // ⚠️ assicurati che sia il root panel disegnato nel .form
+    private JButton indietroButton;
 
     public JPanel getPanel() {
         return panel1;

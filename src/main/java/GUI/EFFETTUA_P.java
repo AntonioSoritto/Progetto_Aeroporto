@@ -10,6 +10,7 @@ public class EFFETTUA_P {
     private JComboBox comboBox2;
     private JButton prenotaButton;
     private JPanel panel1;  // questo deve essere il root panel nel .form
+    private JButton indietroButton;
 
     public EFFETTUA_P() {
         prenotaButton.addActionListener(e -> {

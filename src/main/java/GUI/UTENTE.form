@@ -93,7 +93,7 @@
               </grid>
             </constraints>
             <properties>
-              <foreground color="-16772865"/>
+              <foreground color="-16777216"/>
             </properties>
           </component>
           <component id="686aa" class="javax.swing.JButton" binding="cercaButton" default-binding="true">

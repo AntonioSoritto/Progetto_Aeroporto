@@ -14,6 +14,7 @@ public class V_DESTINAZIONE {
     private JComboBox comboBox3;
     private JButton aggiungiButton;
     private JPanel PANEL;
+    private JButton indietroButton;
 
     public V_DESTINAZIONE()
 

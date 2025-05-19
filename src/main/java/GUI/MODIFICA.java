@@ -10,6 +10,7 @@ public class MODIFICA {
     private JComboBox comboBox1;
     private JButton confermaButton;
     private JPanel panelModifica;
+    private JButton indietroButton;
 
     public MODIFICA()
     {confermaButton.addActionListener(e -> {

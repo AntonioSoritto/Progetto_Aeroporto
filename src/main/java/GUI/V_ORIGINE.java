@@ -14,6 +14,7 @@ public class V_ORIGINE {
     private JButton aggiungiButton;
     private JComboBox comboBox5;
     private JPanel panel1;
+    private JButton indietroButton;
 
     public V_ORIGINE() {
         aggiungiButton.addActionListener(e -> {
