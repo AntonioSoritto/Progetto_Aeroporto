@@ -18,16 +18,15 @@ public class AMMINISTRATORE {
 
     public AMMINISTRATORE() {
         logoutButton.addActionListener(e -> {
-            // Chiude la finestra attuale
+
             SwingUtilities.getWindowAncestor(logoutButton).dispose();
 
-            // Riapre la schermata precedente (es. login o menu principale)
             Controller.apriHome(); // o apriLogin(), dipende da dove vuoi tornare
         });
         partenzaButton.addActionListener(e -> Controller.apriPartenza());
         arrivoButton.addActionListener(e -> Controller.apriArrivo());
         cercaButton.addActionListener(e -> {
-            Controller.apriModifica(); // ← APRE la finestra MODIFICA
+            Controller.apriModifica();
         });
 
 

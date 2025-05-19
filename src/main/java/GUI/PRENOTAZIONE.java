@@ -14,22 +14,21 @@ public class PRENOTAZIONE {
 
 public PRENOTAZIONE() {
     indietroButton.addActionListener(e -> {
-        // Chiude la finestra attuale
+
         SwingUtilities.getWindowAncestor(indietroButton).dispose();
 
-        // Riapre la schermata precedente (es. login o menu principale)
-        Controller.apriUtente(); // o apriLogin(), dipende da dove vuoi tornare
+        Controller.apriUtente();
     });
 
     trovaButton.addActionListener(e -> {
         controller.Controller.apriEffettuaPrenotazione();
-        SwingUtilities.getWindowAncestor(trovaButton).dispose(); // chiude la finestra attuale (facoltativo)
+        SwingUtilities.getWindowAncestor(trovaButton).dispose();
     });
 
 }
 
 
-    private JPanel panel1; // ⚠️ assicurati che sia il root panel disegnato nel .form
+    private JPanel panel1;
     private JButton indietroButton;
 
     public JPanel getPanel() {

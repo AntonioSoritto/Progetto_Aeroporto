@@ -38,7 +38,7 @@ public class HOME {
     }
 
     public JPanel getPanel() {
-        return panel;  // Sostituisci con il nome vero del pannello root
+        return panel;
     }
 
 }

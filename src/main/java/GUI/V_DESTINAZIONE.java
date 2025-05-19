@@ -22,11 +22,10 @@ public class V_DESTINAZIONE {
 
     {
         indietroButton.addActionListener(e -> {
-            // Chiude la finestra attuale
+
             SwingUtilities.getWindowAncestor(indietroButton).dispose();
 
-            // Riapre la schermata precedente (es. login o menu principale)
-            Controller.apriAmministratore(); // o apriLogin(), dipende da dove vuoi tornare
+            Controller.apriAmministratore();
         });
 
         aggiungiButton.addActionListener(e -> {

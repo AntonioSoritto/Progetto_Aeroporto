@@ -13,15 +13,15 @@ public class MODIFICA {
     private JButton confermaButton;
     private JPanel panelModifica;
     private JButton indietroButton;
+    private JComboBox comboBox5;
 
     public MODIFICA()
     {
         indietroButton.addActionListener(e -> {
-            // Chiude la finestra attuale
+
             SwingUtilities.getWindowAncestor(indietroButton).dispose();
 
-            // Riapre la schermata precedente (es. login o menu principale)
-            Controller.apriAmministratore(); // o apriLogin(), dipende da dove vuoi tornare
+            Controller.apriAmministratore();
         });
 
         confermaButton.addActionListener(e -> {

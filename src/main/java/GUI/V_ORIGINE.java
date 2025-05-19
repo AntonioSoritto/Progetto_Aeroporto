@@ -20,11 +20,10 @@ public class V_ORIGINE {
 
     public V_ORIGINE() {
         indietroButton.addActionListener(e -> {
-            // Chiude la finestra attuale
+
             SwingUtilities.getWindowAncestor(indietroButton).dispose();
 
-            // Riapre la schermata precedente (es. login o menu principale)
-            Controller.apriAmministratore(); // o apriLogin(), dipende da dove vuoi tornare
+            Controller.apriAmministratore();
         });
 
 
@@ -34,13 +33,8 @@ public class V_ORIGINE {
         });
     }
 
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-
     public JPanel getPanel() {
-        return panel1;  // sostituisci con il nome vero del root panel nel .form
+        return panel1;
     }
 
 }

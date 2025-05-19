@@ -11,7 +11,7 @@ public class EFFETTUA_P {
     private JTextField IDDocumentoTextField;
     private JComboBox comboBox2;
     private JButton prenotaButton;
-    private JPanel panel1;  // questo deve essere il root panel nel .form
+    private JPanel panel1;
     private JButton indietroButton;
 
     public EFFETTUA_P() {
@@ -19,11 +19,10 @@ public class EFFETTUA_P {
             JOptionPane.showMessageDialog(null, "Volo prenotato correttamente", "✅", JOptionPane.INFORMATION_MESSAGE);
         });
         indietroButton.addActionListener(e -> {
-            // Chiude la finestra attuale
+
             SwingUtilities.getWindowAncestor(indietroButton).dispose();
 
-            // Riapre la schermata precedente (es. login o menu principale)
-            Controller.apriPrenotazione(); // o apriLogin(), dipende da dove vuoi tornare
+            Controller.apriPrenotazione();
         });
 
     }

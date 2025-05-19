@@ -16,11 +16,10 @@ public class UTENTE {
 
     public UTENTE() {
         logoutButton.addActionListener(e -> {
-            // Chiude la finestra attuale
+
             SwingUtilities.getWindowAncestor(logoutButton).dispose();
 
-            // Riapre la schermata precedente (es. login o menu principale)
-            Controller.apriHome(); // o apriLogin(), dipende da dove vuoi tornare
+            Controller.apriHome();
         });
 
 
@@ -37,7 +36,7 @@ public class UTENTE {
 
 
     public JPanel getPanel() {
-        return Panel1; // Usa il nome effettivo del tuo root panel
+        return Panel1;
     }
 
 }
