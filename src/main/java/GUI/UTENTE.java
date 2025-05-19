@@ -11,7 +11,7 @@ public class UTENTE {
     private JPanel Panel1;
     private JPanel Panel;
     private JButton cercaButton;
-
+    private JButton logoutButton;
 
 
     public UTENTE() {
