@@ -1,5 +1,7 @@
 package GUI;
 
+import controller.Controller;
+
 import javax.swing.*;
 
 public class V_ORIGINE {
@@ -17,6 +19,15 @@ public class V_ORIGINE {
     private JButton indietroButton;
 
     public V_ORIGINE() {
+        indietroButton.addActionListener(e -> {
+            // Chiude la finestra attuale
+            SwingUtilities.getWindowAncestor(indietroButton).dispose();
+
+            // Riapre la schermata precedente (es. login o menu principale)
+            Controller.apriAmministratore(); // o apriLogin(), dipende da dove vuoi tornare
+        });
+
+
         aggiungiButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "Volo aggiunto correttamente", "✅", JOptionPane.INFORMATION_MESSAGE);
 

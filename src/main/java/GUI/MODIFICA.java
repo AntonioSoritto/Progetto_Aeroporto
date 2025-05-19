@@ -1,5 +1,7 @@
 package GUI;
 
+import controller.Controller;
+
 import javax.swing.*;
 
 public class MODIFICA {
@@ -13,7 +15,16 @@ public class MODIFICA {
     private JButton indietroButton;
 
     public MODIFICA()
-    {confermaButton.addActionListener(e -> {
+    {
+        indietroButton.addActionListener(e -> {
+            // Chiude la finestra attuale
+            SwingUtilities.getWindowAncestor(indietroButton).dispose();
+
+            // Riapre la schermata precedente (es. login o menu principale)
+            Controller.apriAmministratore(); // o apriLogin(), dipende da dove vuoi tornare
+        });
+
+        confermaButton.addActionListener(e -> {
         JOptionPane.showMessageDialog(null, "Volo modificato correttamente", "✅", JOptionPane.INFORMATION_MESSAGE);
     });}
 

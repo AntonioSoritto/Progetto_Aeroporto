@@ -77,6 +77,15 @@ public class Controller {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+    public static void apriHome() {
+        HOME home = new HOME();
+        JFrame frame = new JFrame("Home");
+        frame.setContentPane(home.getPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // chiude l'intera applicazione
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 
 
 }

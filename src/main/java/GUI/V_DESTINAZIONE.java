@@ -1,5 +1,7 @@
 package GUI;
 
+import controller.Controller;
+
 import javax.swing.*;
 
 public class V_DESTINAZIONE {
@@ -18,7 +20,16 @@ public class V_DESTINAZIONE {
 
     public V_DESTINAZIONE()
 
-    {aggiungiButton.addActionListener(e -> {
+    {
+        indietroButton.addActionListener(e -> {
+            // Chiude la finestra attuale
+            SwingUtilities.getWindowAncestor(indietroButton).dispose();
+
+            // Riapre la schermata precedente (es. login o menu principale)
+            Controller.apriAmministratore(); // o apriLogin(), dipende da dove vuoi tornare
+        });
+
+        aggiungiButton.addActionListener(e -> {
         JOptionPane.showMessageDialog(null, "Volo aggiunto correttamente", "✅", JOptionPane.INFORMATION_MESSAGE);
     });
     }

@@ -1,5 +1,7 @@
 package GUI;
 
+import controller.Controller;
+
 import javax.swing.*;
 
 public class EFFETTUA_P {
@@ -16,6 +18,14 @@ public class EFFETTUA_P {
         prenotaButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(null, "Volo prenotato correttamente", "✅", JOptionPane.INFORMATION_MESSAGE);
         });
+        indietroButton.addActionListener(e -> {
+            // Chiude la finestra attuale
+            SwingUtilities.getWindowAncestor(indietroButton).dispose();
+
+            // Riapre la schermata precedente (es. login o menu principale)
+            Controller.apriPrenotazione(); // o apriLogin(), dipende da dove vuoi tornare
+        });
+
     }
 
     public JPanel getPanel() {
