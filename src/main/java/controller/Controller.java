@@ -68,6 +68,15 @@ public class Controller {
         frame.setVisible(true);
     }
 
+    public static void apriModifica() {
+        MODIFICA modifica = new MODIFICA();
+        JFrame frame = new JFrame("Modifica Volo");
+        frame.setContentPane(modifica.getPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 
 
 }

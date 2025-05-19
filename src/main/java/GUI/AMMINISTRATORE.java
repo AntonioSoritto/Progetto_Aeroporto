@@ -20,8 +20,9 @@ public class AMMINISTRATORE {
         partenzaButton.addActionListener(e -> Controller.apriPartenza());
         arrivoButton.addActionListener(e -> Controller.apriArrivo());
         cercaButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "Volo non trovato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            Controller.apriModifica(); // ← APRE la finestra MODIFICA
         });
+
 
 
     }
