@@ -81,7 +81,7 @@ public class Controller {
         HOME home = new HOME();
         JFrame frame = new JFrame("Home");
         frame.setContentPane(home.getPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // chiude l'intera applicazione
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
