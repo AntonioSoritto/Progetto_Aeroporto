@@ -4,7 +4,7 @@ public class Prenotazione {
     private int numero;
     private String posto;
     private StatoPrenotazione stato;
-    int numeroBagagli;
+    private int numeroBagagli;
 
  public Prenotazione(int numero, String posto, StatoPrenotazione stato, int numeroBagagli) {
      this.numero = numero;
