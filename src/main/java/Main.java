@@ -11,7 +11,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("HOME");
             HOME home = new HOME();
-            frame.setContentPane(home.getPanel()); // getPanel() deve restituire il JPanel principale
+            frame.setContentPane(home.getPanel());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null);
