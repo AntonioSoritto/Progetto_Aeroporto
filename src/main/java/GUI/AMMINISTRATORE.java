@@ -21,7 +21,7 @@ public class AMMINISTRATORE {
 
             SwingUtilities.getWindowAncestor(logoutButton).dispose();
 
-            Controller.apriHome(); // o apriLogin(), dipende da dove vuoi tornare
+            Controller.apriHome();
         });
         partenzaButton.addActionListener(e -> Controller.apriPartenza());
         arrivoButton.addActionListener(e -> Controller.apriArrivo());
@@ -34,6 +34,6 @@ public class AMMINISTRATORE {
     }
 
     public JPanel getPanel() {
-        return PANEL1; // Usa il nome effettivo del tuo root panel
+        return PANEL1;
     }
 }
