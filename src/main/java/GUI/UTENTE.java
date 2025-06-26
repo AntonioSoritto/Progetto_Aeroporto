@@ -1,8 +1,10 @@
 package GUI;
 
 import controller.Controller;
-
+import model.Volo;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UTENTE {
     private JButton effettuaPrenotazioneButton;
@@ -28,6 +30,7 @@ public class UTENTE {
             SwingUtilities.getWindowAncestor(effettuaPrenotazioneButton).dispose();
         });
 
+<<<<<<< Updated upstream
        cercaButton.addActionListener(e -> {
     String criterio = (String) comboBox1.getSelectedItem();
     String valore = textField1.getText();
@@ -83,6 +86,55 @@ public class UTENTE {
         JOptionPane.showMessageDialog(null, sb.toString(), "Voli trovati", JOptionPane.INFORMATION_MESSAGE);
     }
 });
+
+=======
+        cercaButton.addActionListener(e -> {
+            String criterio = (String) comboBox1.getSelectedItem();
+            String valore = textField1.getText();
+
+            List<Volo> risultati = new ArrayList<>();
+
+            switch (criterio) {
+                case "Numero volo":
+                    try {
+                        int numero = Integer.parseInt(valore);
+                        risultati = Controller.cercaPerNumeroVolo(numero);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Numero volo non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    break;
+
+                case "Nome intestatario":
+                    risultati = Controller.cercaPerNomeIntestatario(valore);
+                    break;
+
+                case "ID prenotazione":
+                    try {
+                        int id = Integer.parseInt(valore);
+                        risultati = Controller.cercaPerIdPrenotazione(id);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "ID non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    break;
+            }
+
+            if (risultati.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nessun volo trovato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+            } else {
+                StringBuilder sb = new StringBuilder("Risultati:\n");
+                for (Volo v : risultati) {
+                    sb.append("Volo ").append(v.getNumeroVolo())
+                            .append(" da ").append(v.getOrigine())
+                            .append(" a ").append(v.getDestinazione())
+                            .append(" il ").append(v.getData())
+                            .append(" alle ").append(v.getOra()).append("\n");
+                }
+                JOptionPane.showMessageDialog(null, sb.toString(), "Voli trovati", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+>>>>>>> Stashed changes
 
 
     }
