@@ -28,9 +28,62 @@ public class UTENTE {
             SwingUtilities.getWindowAncestor(effettuaPrenotazioneButton).dispose();
         });
 
-        cercaButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "Volo non trovato", "Attenzione", JOptionPane.WARNING_MESSAGE);
-        });
+       cercaButton.addActionListener(e -> {
+    String criterio = (String) comboBox1.getSelectedItem();
+    String valore = textField1.getText();
+
+    List<Volo> risultati = new ArrayList<>();
+
+    switch (criterio) {
+        case "Numero volo":
+            try {
+                int numero = Integer.parseInt(valore);
+                risultati = Controller.cercaPerNumeroVolo(numero);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Numero volo non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            break;
+
+        case "Nome intestatario":
+            risultati = Controller.cercaPerNomeIntestatario(valore);
+            break;
+
+        case "ID prenotazione":
+            try {
+                int id = Integer.parseInt(valore);
+                risultati = Controller.cercaPerIdPrenotazione(id);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "ID non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            break;
+    }
+
+    if (risultati.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Nessun volo trovato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+    } else {
+        StringBuilder sb = new StringBuilder("Risultati:\n");
+        for (Volo v : risultati) {
+            sb.append("Volo ").append(v.getIdVolo())
+              .append(" da ").append(v.getA_Volo_Origine())
+              .append(" a ").append(v.getA_Volo_Destinazione())
+              .append(" il ").append(v.getData_Volo())
+              .append(" alle ").append(v.getOra_Volo_Prevista());
+
+            // Se è un VoloOrigine, mostra anche il gate
+            if (v instanceof VoloOrigine) {
+                Gate gate = ((VoloOrigine) v).getImbarco();
+                sb.append(" - Gate: ").append(gate != null ? gate.toString() : "N/D");
+            }
+
+            sb.append("\n");
+        }
+
+        JOptionPane.showMessageDialog(null, sb.toString(), "Voli trovati", JOptionPane.INFORMATION_MESSAGE);
+    }
+});
+
 
     }
 
