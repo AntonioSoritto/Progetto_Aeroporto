@@ -1,12 +1,21 @@
 package controller;
 
-import GUI.*;
 
+import DAO.VoloDAO;
+import GUI.*;
+import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
+import model.Volo;
+import Util.ConnessioneDatabase;
 
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Controller {
+
     public static void apriUtente() {
+
         UTENTE utente = new UTENTE();
         JFrame frame = new JFrame("Interfaccia Utente");
         frame.setContentPane(utente.getPanel());
@@ -87,26 +96,26 @@ public class Controller {
         frame.setVisible(true);
     }
 
-    
-public static List<Volo> getTuttiIVoli() {
-        VoloDAO dao = new VoloImplementazionePostgresDAO();
-        return dao.getTuttiIVoli();
-    }
 
-    public static List<Volo> cercaPerNumeroVolo(int numero) {
-        VoloDAO dao = new VoloImplementazionePostgresDAO();
-        return dao.cercaPerNumeroVolo(numero);
-    }
+public static List<Volo> cercaPerNumeroVolo(int numero) throws SQLException {
+    Connection conn = ConnessioneDatabase.getInstance().connection;
 
-    public static List<Volo> cercaPerNomeIntestatario(String nome) {
-        VoloDAO dao = new VoloImplementazionePostgresDAO();
-        return dao.cercaPerNomeIntestatario(nome);
-    }
+    VoloDAO dao = new VoloImplementazionePostgresDAO();
+return dao.cercaPerNumeroVolo(numero);
+}
 
-    public static List<Volo> cercaPerIdPrenotazione(int id) {
-        VoloDAO dao = new VoloImplementazionePostgresDAO();
-        return dao.cercaPerIdPrenotazione(id);
-    }
+public static List<Volo> cercaPerNomeIntestatario(String nome) throws SQLException {
+    Connection conn = ConnessioneDatabase.getInstance().connection;
+    VoloDAO dao = new VoloImplementazionePostgresDAO();
+    return dao.cercaPerNomeIntestatario(nome);
+
+}
+ public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
+     Connection conn = ConnessioneDatabase.getInstance().connection;
+
+     VoloDAO dao = new VoloImplementazionePostgresDAO();
+return dao.cercaPerIdPrenotazione(id);
+}
 
 
 

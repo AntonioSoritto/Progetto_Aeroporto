@@ -13,7 +13,7 @@ public class VoloDestinazione extends Volo{
      LocalTime Ora_Volo_Prevista,
      LocalTime Ritardo,
      StatoVolo stato) {
-            super(idVolo, Compagnia, A_Volo_Destinazione, A_Volo_Origine, Data_Volo, Ora_Volo_Prevista, stato, Ritardo);
+            super();
 
 
             v.setA_Volo_Destinazione("NAPOLI");

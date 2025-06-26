@@ -13,7 +13,7 @@ public class Volo {
     private LocalTime Ritardo;
     private StatoVolo stato;
 
-    public Volo(int idVolo, String Compagnia, String A_Volo_Destinazione, String A_Volo_Origine, LocalDate Data_Volo, LocalTime Ora_Volo_Prevista, StatoVolo stato, LocalTime Ritardo) {
+    public Volo() {
         this.idVolo = idVolo;
         this.Compagnia = Compagnia;
         this.A_Volo_Destinazione = A_Volo_Destinazione;

@@ -5,5 +5,6 @@ public enum StatoVolo {
     IN_RITARDO,
     ATTERRATO,
     DECOLLATO,
-    CANCELLATO
+    CANCELLATO,
+    IN_ORARIO
 }

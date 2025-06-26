@@ -1,3 +1,5 @@
+package Util;
+
 import java.sql.*;
 
 public class ConnessioneDatabase {
@@ -8,7 +10,7 @@ public class ConnessioneDatabase {
     private String url = "jdbc:postgresql://localhost:5432/postgres";
     private String driver = "org.postgresql.Driver";
 
-    private ConnessioneDatabase() throws SQLException {
+    public ConnessioneDatabase() throws SQLException {
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, nome, password);
