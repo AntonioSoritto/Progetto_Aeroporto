@@ -87,5 +87,27 @@ public class Controller {
         frame.setVisible(true);
     }
 
+    
+public static List<Volo> getTuttiIVoli() {
+        VoloDAO dao = new VoloImplementazionePostgresDAO();
+        return dao.getTuttiIVoli();
+    }
+
+    public static List<Volo> cercaPerNumeroVolo(int numero) {
+        VoloDAO dao = new VoloImplementazionePostgresDAO();
+        return dao.cercaPerNumeroVolo(numero);
+    }
+
+    public static List<Volo> cercaPerNomeIntestatario(String nome) {
+        VoloDAO dao = new VoloImplementazionePostgresDAO();
+        return dao.cercaPerNomeIntestatario(nome);
+    }
+
+    public static List<Volo> cercaPerIdPrenotazione(int id) {
+        VoloDAO dao = new VoloImplementazionePostgresDAO();
+        return dao.cercaPerIdPrenotazione(id);
+    }
+
+
 
 }
