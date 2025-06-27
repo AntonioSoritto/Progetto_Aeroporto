@@ -35,66 +35,6 @@ public class UTENTE {
         });
 
 
-       cercaButton.addActionListener(e -> {
-    String criterio = (String) comboBox1.getSelectedItem();
-    String valore = textField1.getText();
-
-    List<Volo> risultati = new ArrayList<>();
-
-    switch (criterio) {
-        case "Numero volo":
-            try {
-                int numero = Integer.parseInt(valore);
-                risultati = Controller.cercaPerNumeroVolo(numero);
-            } catch (NumberFormatException | SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Numero volo non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            break;
-
-        case "Nome intestatario":
-            try {
-                risultati = Controller.cercaPerNomeIntestatario(valore);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-            break;
-
-        case "ID prenotazione":
-            try {
-                int id = Integer.parseInt(valore);
-                risultati = Controller.cercaPerIdPrenotazione(id);
-            } catch (NumberFormatException | SQLException ex) {
-                JOptionPane.showMessageDialog(null, "ID non valido", "Errore", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            break;
-    }
-
-    if (risultati.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Nessun volo trovato", "Attenzione", JOptionPane.WARNING_MESSAGE);
-    } else {
-        StringBuilder sb = new StringBuilder("Risultati:\n");
-        for (Volo v : risultati) {
-            sb.append("Volo ").append(v.getIdVolo())
-              .append(" da ").append(v.getA_Volo_Origine())
-              .append(" a ").append(v.getA_Volo_Destinazione())
-              .append(" il ").append(v.getData_Volo())
-              .append(" alle ").append(v.getOra_Volo_Prevista());
-
-            // Se è un VoloOrigine, mostra anche il gate
-            if (v instanceof VoloOrigine) {
-                Gate gate = ((VoloOrigine) v).getImbarco();
-                sb.append(" - Gate: ").append(gate != null ? gate.toString() : "N/D");
-            }
-
-            sb.append("\n");
-        }
-
-        JOptionPane.showMessageDialog(null, sb.toString(), "Voli trovati", JOptionPane.INFORMATION_MESSAGE);
-    }
-});
-
         cercaButton.addActionListener(e -> {
             String criterio = (String) comboBox1.getSelectedItem();
             String valore = textField1.getText();
@@ -140,7 +80,16 @@ public class UTENTE {
                             .append(" da ").append(v.getA_Volo_Origine())
                             .append(" a ").append(v.getA_Volo_Destinazione())
                             .append(" il ").append(v.getData_Volo())
-                            .append(" alle ").append(v.getOra_Volo_Prevista()).append("\n");
+                            .append(" alle ").append(v.getOra_Volo_Prevista());
+
+
+                    if (v instanceof VoloOrigine) {
+                        Gate g = ((VoloOrigine) v).getImbarco();
+                        int gate = g.getIdGate();
+                        sb.append(" — Gate di partenza: ").append(gate);
+                    }
+
+                    sb.append("\n");
                 }
                 JOptionPane.showMessageDialog(null, sb.toString(), "Voli trovati", JOptionPane.INFORMATION_MESSAGE);
             }
