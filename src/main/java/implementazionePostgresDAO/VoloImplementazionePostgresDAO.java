@@ -8,7 +8,6 @@ import model.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.OffsetTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,19 +105,90 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
     @Override
     public List<Volo> cercaPerIdPrenotazione(int id) {
         List<Volo> voli = new ArrayList<>();
-        String query = "SELECT * FROM \"Prenotazioni\" p " +
-                "JOIN \"VoloDestinazione\" v ON p.\"IdVolo\" = v.\"IdVolo\" " +
-                "WHERE p.\"numero\" = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+
+        // Prima query: cerca nel VoloOrigine
+        String queryOrigine = """
+        SELECT v.*, v."IdGate"
+        FROM "Prenotazioni" p
+        JOIN "VoloOrigine" v ON p."IdVolo" = v."IdVolo"
+        WHERE p."numero" = ?
+    """;
+
+        try (PreparedStatement ps = connection.prepareStatement(queryOrigine)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                voli.add(creaVoloDaResultSet(rs));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    voli.add(creaVoloDaResultSet(rs));
+                }
             }
-            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // Seconda query: cerca nel VoloDestinazione
+        String queryDestinazione = """
+        SELECT v.*
+        FROM "Prenotazioni" p
+        JOIN "VoloDestinazione" v ON p."IdVolo" = v."IdVolo"
+        WHERE p."numero" = ?
+    """;
+
+        try (PreparedStatement ps = connection.prepareStatement(queryDestinazione)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    voli.add(creaVoloDaResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return voli;
+    }
+
+    @Override
+    public List<Volo> cercaMeta(String destinazione, LocalDate data) {
+        List<Volo> voli = new ArrayList<>();
+
+        String sqlOrigine = """
+        SELECT v.*, v."IdGate"
+        FROM "VoloOrigine" v
+        WHERE LOWER(v."A_Volo_Destinazione") = LOWER(?)
+          AND v."Data_Volo" = ?
+    """;
+
+        String sqlDestinazione = """
+        SELECT *
+        FROM "VoloDestinazione" v
+        WHERE LOWER(v."A_Volo_Destinazione") = LOWER(?)
+          AND v."Data_Volo" = ?
+    """;
+
+        try (PreparedStatement ps1 = connection.prepareStatement(sqlOrigine)) {
+            ps1.setString(1, destinazione.trim());
+            ps1.setDate(2, Date.valueOf(data));
+            try (ResultSet rs = ps1.executeQuery()) {
+                while (rs.next()) {
+                    voli.add(creaVoloDaResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try (PreparedStatement ps2 = connection.prepareStatement(sqlDestinazione)) {
+            ps2.setString(1, destinazione.trim());
+            ps2.setDate(2, Date.valueOf(data));
+            try (ResultSet rs = ps2.executeQuery()) {
+                while (rs.next()) {
+                    voli.add(creaVoloDaResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return voli;
     }
 

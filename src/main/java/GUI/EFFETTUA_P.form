@@ -18,7 +18,7 @@
         <properties>
           <font name="Segoe UI Black"/>
           <foreground color="-16772865"/>
-          <text value="Voli disponibili"/>
+          <text value="Disponibili"/>
         </properties>
       </component>
       <component id="77d33" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
@@ -27,10 +27,7 @@
         </constraints>
         <properties>
           <foreground color="-16777216"/>
-          <model>
-            <item value="Volo 1"/>
-            <item value="Volo 2"/>
-          </model>
+          <model/>
         </properties>
       </component>
       <grid id="9a2f" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -94,7 +91,7 @@
             <properties>
               <foreground color="-16777216"/>
               <model>
-                <item value="0 (bagaglio a mano)"/>
+                <item value="0"/>
                 <item value="1"/>
                 <item value="2"/>
                 <item value="3"/>

@@ -3,13 +3,12 @@ package GUI;
 import controller.Controller;
 
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class PRENOTAZIONE {
     private JTextField inserisciDestinazioneTextField;
     private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox4;
-    private JComboBox comboBox3;
     private JButton trovaButton;
 
 public PRENOTAZIONE() {
@@ -21,7 +20,11 @@ public PRENOTAZIONE() {
     });
 
     trovaButton.addActionListener(e -> {
-        controller.Controller.apriEffettuaPrenotazione();
+        String destinazione = inserisciDestinazioneTextField.getText();
+        String dataString = (String) comboBox1.getSelectedItem();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data = LocalDate.parse(dataString, formatter);
+        controller.Controller.apriEffettuaPrenotazione(destinazione, data);
         SwingUtilities.getWindowAncestor(trovaButton).dispose();
     });
 
