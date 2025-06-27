@@ -5,6 +5,7 @@ public class Prenotazione {
     private String posto;
     private StatoPrenotazione stato;
     private int numeroBagagli;
+    private String idDocumento;
 
  public Prenotazione(int numero, String posto, StatoPrenotazione stato, int numeroBagagli) {
      this.numero = numero;
