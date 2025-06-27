@@ -3,7 +3,7 @@ package model;
 public class Gate {
     private int IdGate;
 
-    public Gate(int IdGate) {
+    public Gate() {
         this.IdGate = IdGate;
     }
 

@@ -37,7 +37,8 @@ public class UTENTE {
 
         cercaButton.addActionListener(e -> {
             String criterio = (String) comboBox1.getSelectedItem();
-            String valore = textField1.getText();
+            String valore = textField1.getText().trim();
+
 
             List<Volo> risultati = new ArrayList<>();
 

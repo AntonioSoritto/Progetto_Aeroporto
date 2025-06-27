@@ -14,14 +14,7 @@ public class Volo {
     private StatoVolo stato;
 
     public Volo() {
-        this.idVolo = idVolo;
-        this.Compagnia = Compagnia;
-        this.A_Volo_Destinazione = A_Volo_Destinazione;
-        this.A_Volo_Origine = A_Volo_Origine;
-        this.Data_Volo = Data_Volo;
-        this.Ora_Volo_Prevista = Ora_Volo_Prevista;
-        this.Ritardo = Ritardo;
-        this.stato = stato;
+
     }
 
     public void setIdVolo(int idVolo) {
