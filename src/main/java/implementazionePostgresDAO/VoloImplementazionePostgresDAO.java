@@ -59,48 +59,51 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
 
 
     @Override
-    public List<Volo> cercaPerNomeIntestatario(String nomeCompleto) {
-        List<Volo> voli = new ArrayList<>();
-
-        String sqlVoloOrigine = """
-        SELECT v.*, v."IdGate"
+    public List<Volo> cercaPerNomeIntestatario(String nome, String cognome)
+            throws SQLException {
+        String sql = """
+        SELECT 
+          v."IdVolo", v."Compagnia", v."A_Volo_Origine",
+          v."A_Volo_Destinazione", v."Data_Volo", 
+          v."Ora_Volo_Prevista", v."Ritardo", 
+          v."StatoVolo", v."IdGate"
         FROM "Prenotazioni" p
-        JOIN "Passeggero" pa ON p."idDocumento" = pa."idDocumento"
-        JOIN "VoloOrigine" v ON p."IdVolo" = v."IdVolo"
-        WHERE LOWER(TRIM(pa."Nome") || ' ' || TRIM(pa."Cognome")) = LOWER(?)    """;
-
-        String sqlVoloDestinazione = """
-        SELECT v.*
+          JOIN "Passeggero" pa ON p."idDocumento" = pa."idDocumento"
+          JOIN "VoloOrigine" v ON p."IdVolo" = v."IdVolo"
+        WHERE pa."Nome"   ILIKE ?
+          AND pa."Cognome" ILIKE ?
+        UNION ALL
+        SELECT 
+          v."IdVolo", v."Compagnia", v."A_Volo_Origine",
+          v."A_Volo_Destinazione", v."Data_Volo", 
+          v."Ora_Volo_Prevista", v."Ritardo", 
+          v."StatoVolo", NULL AS "IdGate"
         FROM "Prenotazioni" p
-        JOIN "Passeggero" pa ON p."idDocumento" = pa."idDocumento"
-        JOIN "VoloDestinazione" v ON p."IdVolo" = v."IdVolo"
-        WHERE LOWER(TRIM(pa."Nome") || ' ' || TRIM(pa."Cognome")) = LOWER(?)    """;
+          JOIN "Passeggero" pa ON p."idDocumento" = pa."idDocumento"
+          JOIN "VoloDestinazione" v ON p."IdVolo" = v."IdVolo"
+        WHERE pa."Nome"   ILIKE ?
+          AND pa."Cognome" ILIKE ?
+    """;
 
-        try {
-            try (PreparedStatement ps = connection.prepareStatement(sqlVoloOrigine)) {
-                ps.setString(1, nomeCompleto.trim());
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-                        voli.add(creaVoloDaResultSet(rs));
-                    }
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            // imposto 4 parametri, 2 per ogni blocco
+            ps.setString(1, "%" + nome  + "%");
+            ps.setString(2, "%" + cognome + "%");
+            ps.setString(3, "%" + nome  + "%");
+            ps.setString(4, "%" + cognome + "%");
+
+            List<Volo> risultati = new ArrayList<>();
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    risultati.add(creaVoloDaResultSet(rs));
                 }
             }
-
-            try (PreparedStatement ps = connection.prepareStatement(sqlVoloDestinazione)) {
-                ps.setString(1, nomeCompleto.trim());
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-                        voli.add(creaVoloDaResultSet(rs));
-                    }
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return risultati;
         }
-
-        return voli;
     }
+
+
+
 
     @Override
     public List<Volo> cercaPerIdPrenotazione(int id) {

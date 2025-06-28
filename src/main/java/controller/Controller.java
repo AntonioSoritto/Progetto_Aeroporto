@@ -106,13 +106,19 @@ public static List<Volo> cercaPerNumeroVolo(int numero) throws SQLException {
 return dao.cercaPerNumeroVolo(numero);
 }
 
-public static List<Volo> cercaPerNomeIntestatario(String nome) throws SQLException {
-    Connection conn = ConnessioneDatabase.getInstance().connection;
-    VoloDAO dao = new VoloImplementazionePostgresDAO();
-    return dao.cercaPerNomeIntestatario(nome);
+    public static List<Volo> cercaPerNomeIntestatario(String nome, String cognome)
+            throws SQLException {
+        // 1) Recupera la connessione aperta
+        Connection conn = ConnessioneDatabase.getInstance().connection;
+        // 2) Costruisci il DAO passando la Connection
+        VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
+        // 3) Delega la query al DAO
+        return dao.cercaPerNomeIntestatario(nome, cognome);
+    }
 
-}
- public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
+
+
+    public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
      Connection conn = ConnessioneDatabase.getInstance().connection;
 
      VoloDAO dao = new VoloImplementazionePostgresDAO();
@@ -189,5 +195,5 @@ return dao.cercaPerIdPrenotazione(id);
                     "❌ Errore", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
 }

@@ -53,11 +53,32 @@ public class UTENTE {
                     }
                     break;
 
-                case "Nome intestatario":
+                case "Nome prenotazione":
+                    // 1. suddivido il testo in nome + cognome
+                    String[] parts = valore.split("\\s+", 2);
+                    if (parts.length < 2) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Inserisci Nome e Cognome separati da uno spazio",
+                                "Errore",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
+                    }
+                    String nome  = parts[0];
+                    String cogn = parts[1];
+
                     try {
-                        risultati = Controller.cercaPerNomeIntestatario(valore);
+                        risultati = Controller.cercaPerNomeIntestatario(nome, cogn);
                     } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Errore accesso database",
+                                "Errore",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
                     }
                     break;
 
