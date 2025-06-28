@@ -102,8 +102,32 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         }
     }
 
+    public Prenotazione cercaPerIdPrenotazionePrenotazione(int idPren) throws SQLException {
+        String sql = """
+        SELECT "numero", "IdVolo", "idDocumento", "StatoPrenotazione"
+        FROM "Prenotazioni"
+        WHERE "numero" = ?
+    """;
 
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, idPren);
 
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Prenotazione p = new Prenotazione();
+                    p.setNumero(rs.getInt("numero"));
+                    p.setIdVolo(rs.getInt("IdVolo"));
+                    p.setIdDocumento(rs.getString("idDocumento"));
+                    p.setStatoPrenotazione(
+                            StatoPrenotazione.valueOf(rs.getString("StatoPrenotazione"))
+                    );
+                    return p;
+                }
+            }
+        }
+
+        return null; // Nessuna prenotazione trovata
+    }
 
     @Override
     public List<Volo> cercaPerIdPrenotazione(int id) {
@@ -194,6 +218,26 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
 
         return voli;
     }
+
+    public void aggiornaStatoPrenotazione(int idPrenotazione, String stato) throws SQLException {
+        String sql = """
+        UPDATE "Prenotazioni"
+        SET "StatoPrenotazione" = ?::"StatoPrenotazione"
+        WHERE "numero" = ?
+    """;
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, stato);
+            ps.setInt(2, idPrenotazione);        // chiave da aggiornare
+
+            int righe = ps.executeUpdate();
+            if (righe == 0) {
+                throw new SQLException("Nessuna prenotazione trovata con ID: " + idPrenotazione);
+            }
+        }
+    }
+
+
 
     private Volo creaVoloDaResultSet(ResultSet rs) throws SQLException {
         int idVolo = rs.getInt("IdVolo");

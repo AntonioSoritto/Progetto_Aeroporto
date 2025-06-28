@@ -3,6 +3,7 @@ package GUI;
 import controller.Controller;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class AMMINISTRATORE {
     private JLabel MessaggioA;
@@ -26,21 +27,61 @@ public class AMMINISTRATORE {
         partenzaButton.addActionListener(e -> Controller.apriPartenza());
         arrivoButton.addActionListener(e -> Controller.apriArrivo());
         cercaButton.addActionListener(e -> {
-            try {
-                String testo = textField1.getText().trim();
-                if (testo.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Inserisci il numero del volo", "⚠️ Attenzione", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
+            String criterio = (String) comboBox1.getSelectedItem();
+            String testo   = textField1.getText().trim();
 
-                int numero = Integer.parseInt(testo);
-                Controller.apriModifica(numero);
+            // controllo campo vuoto
+            if (testo.isEmpty()) {
+                String msg = criterio.equals("Numero volo")
+                        ? "Inserisci il numero del volo"
+                        : "Inserisci l'ID della prenotazione";
+                JOptionPane.showMessageDialog(
+                        null, msg, "⚠️ Attenzione", JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
 
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Il numero del volo deve essere un numero intero", "❌ Errore", JOptionPane.ERROR_MESSAGE);
+            // in base al criterio scelto
+            switch (criterio) {
+                case "Numero volo":
+                    try {
+                        int numero = Integer.parseInt(testo);
+                        // apre la GUI di modifica volo
+                        Controller.apriModifica(numero);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Il numero del volo deve essere un numero intero",
+                                "❌ Errore",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                    break;
+
+                case "ID prenotazione":
+                    try {
+                        int idPren = Integer.parseInt(testo);
+                        Controller.apriModificaPrenotazione(idPren);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "L'ID della prenotazione deve essere un numero intero",
+                                "❌ Errore",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                    break;
+
+                default:
+                    // in teoria non ci arrivi mai, ma meglio mettere un fallback
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Criterio di ricerca non riconosciuto",
+                            "❌ Errore",
+                            JOptionPane.ERROR_MESSAGE
+                    );
             }
         });
-
 
 
     }

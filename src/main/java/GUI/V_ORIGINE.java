@@ -10,13 +10,11 @@ public class V_ORIGINE {
     private JTextField gateTextField;
     private JTextField aeroportoDOrigineTextField;
     private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
-    private JComboBox comboBox4;
     private JButton aggiungiButton;
     private JComboBox comboBox5;
     private JPanel panel1;
     private JButton indietroButton;
+    private JTextField ORATextField;
 
     public V_ORIGINE() {
         indietroButton.addActionListener(e -> {

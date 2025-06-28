@@ -11,9 +11,6 @@ public class V_DESTINAZIONE {
     private JTextField aeroportoDArrivoTextField;
     private JComboBox comboBox1;
     private JComboBox comboBox5;
-    private JComboBox comboBox2;
-    private JComboBox comboBox4;
-    private JComboBox comboBox3;
     private JButton aggiungiButton;
     private JPanel PANEL;
     private JButton indietroButton;

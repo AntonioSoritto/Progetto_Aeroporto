@@ -6,6 +6,8 @@ import DAO.VoloDAO;
 import GUI.*;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
 import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
+import model.Prenotazione;
+import model.StatoPrenotazione;
 import model.Volo;
 import Util.ConnessioneDatabase;
 
@@ -118,6 +120,10 @@ return dao.cercaPerNumeroVolo(numero);
 
 
 
+
+
+
+
     public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
      Connection conn = ConnessioneDatabase.getInstance().connection;
 
@@ -195,5 +201,49 @@ return dao.cercaPerIdPrenotazione(id);
                     "❌ Errore", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    public static void apriModificaPrenotazione(int idPren) {
+        try {
+            Connection conn = ConnessioneDatabase.getInstance().connection;
+            VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
+            Prenotazione pren = dao.cercaPerIdPrenotazionePrenotazione(idPren);
+
+            if (pren == null) {
+                JOptionPane.showMessageDialog(null,
+                        "Prenotazione con ID " + idPren + " non trovata.",
+                        "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            SwingUtilities.invokeLater(() -> {
+                MOD_P gui = new MOD_P();
+                gui.setPrenotazione(pren);
+
+                JFrame f = new JFrame("Modifica Prenotazione");
+                f.setContentPane(gui.getPanel());
+                f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                f.pack();
+                f.setLocationRelativeTo(null);
+                f.setVisible(true);
+            });
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Errore durante l’apertura della modifica prenotazione",
+                    "❌ Errore", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    public static void aggiornaStatoPrenotazione(int idPren, String nuovoStato) throws SQLException {
+        Connection conn = ConnessioneDatabase.getInstance().connection;
+        VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
+        dao.aggiornaStatoPrenotazione(idPren, nuovoStato);
+    }
+
+
+
+
 
 }

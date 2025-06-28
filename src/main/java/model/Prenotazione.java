@@ -2,6 +2,7 @@ package model;
 
 public class Prenotazione {
     private int numero;
+    private int idVolo;
     private String posto;
     private StatoPrenotazione stato;
     private int numeroBagagli;
@@ -13,7 +14,12 @@ public class Prenotazione {
      this.stato = stato;
      this.numeroBagagli = numeroBagagli;
  }
- public void setNumero(int numero) {
+
+    public Prenotazione() {
+
+    }
+
+    public void setNumero(int numero) {
      this.numero = numero;
  }
  public int getNumero() {
@@ -37,9 +43,22 @@ public class Prenotazione {
  public int getNumeroBagagli() {
      return numeroBagagli;
  }
+ public void setIdDocumento(String idDocumento) {
+     this.idDocumento = idDocumento;
+ }
+ public String getIdDocumento() {
+     return idDocumento;
+ }
 
+    public void setIdVolo(int idVolo) {
+        this.idVolo = idVolo;
+    }
 
- public void checkIn() {
+    public int getIdVolo() {
+        return idVolo;
+    }
 
+    public void setStatoPrenotazione(StatoPrenotazione statoPrenotazione) {
+     this.stato = statoPrenotazione;
     }
 }
