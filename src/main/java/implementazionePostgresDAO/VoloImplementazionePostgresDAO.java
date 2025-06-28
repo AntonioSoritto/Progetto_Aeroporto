@@ -202,9 +202,17 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         LocalTime ritardo = rs.getTime("Ritardo").toLocalTime();
         StatoVolo stato = StatoVolo.valueOf(rs.getString("StatoVolo"));
 
-        // Verifica se c'è un campo IdGate presente → se sì, crea un VoloOrigine
-        Object gateObj = rs.getObject("IdGate");
-        if (gateObj != null) {
+
+        Gate gate = null;
+        try {
+            int idGate = rs.getInt("IdGate");
+            if (!rs.wasNull()) {
+                gate = new Gate(idGate);
+            }
+        } catch (SQLException ignored) {
+            // Colonna IdGate non presente → volo di destinazione
+        }
+        if (gate != null) {
             VoloOrigine vo = new VoloOrigine();
             vo.setIdVolo(idVolo);
             vo.setCompagnia(compagnia);
@@ -214,25 +222,19 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             vo.setOra_Volo_Prevista(ora);
             vo.setRitardo(ritardo);
             vo.setStato(stato);
-
-            Gate g = new Gate();
-            g.setIdGate(rs.getInt("IdGate"));
-            vo.setImbarco(g);
-
+            vo.setImbarco(gate); // ✅ ID del Gate assegnato
             return vo;
+        } else {
+            VoloDestinazione vd = new VoloDestinazione();
+            vd.setIdVolo(idVolo);
+            vd.setCompagnia(compagnia);
+            vd.setA_Volo_Origine(origine);
+            vd.setA_Volo_Destinazione(destinazione);
+            vd.setData_Volo(data);
+            vd.setOra_Volo_Prevista(ora);
+            vd.setRitardo(ritardo);
+            vd.setStato(stato);
+            return vd;
         }
-
-        // Altrimenti, ritorna un Volo "standard" (es. VoloDestinazione o Volo base)
-        Volo v = new Volo();
-        v.setIdVolo(idVolo);
-        v.setCompagnia(compagnia);
-        v.setA_Volo_Origine(origine);
-        v.setA_Volo_Destinazione(destinazione);
-        v.setData_Volo(data);
-        v.setOra_Volo_Prevista(ora);
-        v.setRitardo(ritardo);
-        v.setStato(stato);
-
-        return v;
     }
 }

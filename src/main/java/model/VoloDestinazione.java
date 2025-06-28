@@ -15,9 +15,10 @@ public class VoloDestinazione extends Volo{
      StatoVolo stato) {
             super();
 
-
-            v.setA_Volo_Destinazione("NAPOLI");
         }
 
+    public VoloDestinazione() {
+
     }
+}
 

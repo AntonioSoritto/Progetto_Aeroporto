@@ -88,15 +88,6 @@ public class Controller {
         frame.setVisible(true);
     }
 
-    public static void apriModifica() {
-        MODIFICA modifica = new MODIFICA();
-        JFrame frame = new JFrame("Modifica Volo");
-        frame.setContentPane(modifica.getPanel());
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
     public static void apriHome() {
         HOME home = new HOME();
         JFrame frame = new JFrame("Home");
@@ -163,6 +154,40 @@ return dao.cercaPerIdPrenotazione(id);
             return false;
         }
     }
+    public static boolean verificaLogin(String email, String password) throws SQLException {
+        UtenteDAO dao = new UtenteImplementazionePostgresDAO();
+        return dao.loginValido(email, password);
+    }
+    public static boolean isAmministratore(String email) throws SQLException {
+        UtenteDAO dao = new UtenteImplementazionePostgresDAO();
+        return dao.isAdmin(email);
+    }
+    public static void apriModifica(int numeroVolo) {
+        try {
+            List<Volo> voli = new VoloImplementazionePostgresDAO().cercaPerNumeroVolo(numeroVolo);
 
+            if (voli.isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "⚠️ Nessun volo trovato con questo numero",
+                        "Volo non trovato", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Volo volo = voli.get(0); // Per ora usiamo il primo (modificabile)
+
+            JFrame frame = new JFrame("MODIFICA VOLO");
+            frame.setContentPane(new MODIFICA(volo).getPanel());
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Errore durante la ricerca del volo",
+                    "❌ Errore", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
 }

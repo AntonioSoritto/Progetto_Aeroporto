@@ -3,9 +3,10 @@ package model;
 public class Gate {
     private int IdGate;
 
-    public Gate() {
+    public Gate(int IdGate) {
         this.IdGate = IdGate;
     }
+    public Gate(){}
 
     public void setIdGate(int IdGate) {
         this.IdGate = IdGate;

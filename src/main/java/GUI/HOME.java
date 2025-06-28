@@ -15,24 +15,32 @@ public class HOME {
 
     public HOME() {
         VOLAButton.addActionListener(e -> {
-            String selected = (String) comboBox1.getSelectedItem();
             String email = textField1.getText();
             String password = new String(passwordField1.getPassword());
 
-            if ("UTENTE".equals(selected)) {
-                if ("a@b.com".equals(email) && "qwerty".equals(password)) {
-                    Controller.apriUtente();
-                    SwingUtilities.getWindowAncestor(VOLAButton).dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Email o password errati", "Errore login", JOptionPane.ERROR_MESSAGE);
+            try {
+                if (!Controller.verificaLogin(email, password)) {
+                    JOptionPane.showMessageDialog(null,
+                            "Email o password errati",
+                            "Errore login", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
-            }else if("AMMINISTRATORE".equals(selected)){
-                if ("a@b.com".equals(email) && "qwerty".equals(password)) {
+
+                boolean isAdmin = Controller.isAmministratore(email);
+
+                if (isAdmin) {
                     Controller.apriAmministratore();
-                    SwingUtilities.getWindowAncestor(VOLAButton).dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Email o password errati", "Errore login", JOptionPane.ERROR_MESSAGE);
+                    Controller.apriUtente();
                 }
+
+                SwingUtilities.getWindowAncestor(VOLAButton).dispose();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null,
+                        "Errore durante il login",
+                        "❌ Errore", JOptionPane.ERROR_MESSAGE);
             }
         });
     }

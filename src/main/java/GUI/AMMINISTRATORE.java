@@ -26,7 +26,19 @@ public class AMMINISTRATORE {
         partenzaButton.addActionListener(e -> Controller.apriPartenza());
         arrivoButton.addActionListener(e -> Controller.apriArrivo());
         cercaButton.addActionListener(e -> {
-            Controller.apriModifica();
+            try {
+                String testo = textField1.getText().trim();
+                if (testo.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Inserisci il numero del volo", "⚠️ Attenzione", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                int numero = Integer.parseInt(testo);
+                Controller.apriModifica(numero);
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Il numero del volo deve essere un numero intero", "❌ Errore", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
 
