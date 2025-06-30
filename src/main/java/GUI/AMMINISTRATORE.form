@@ -89,7 +89,7 @@
             </constraints>
             <properties>
               <foreground color="-16777216"/>
-              <text value="Partenza"/>
+              <text value="Destinazione"/>
             </properties>
           </component>
           <component id="c58bd" class="javax.swing.JButton" binding="arrivoButton" default-binding="true">
@@ -98,7 +98,7 @@
             </constraints>
             <properties>
               <foreground color="-16777216"/>
-              <text value="Arrivo"/>
+              <text value="Origine"/>
             </properties>
           </component>
         </children>

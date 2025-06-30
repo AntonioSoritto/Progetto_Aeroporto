@@ -57,6 +57,17 @@ public class MODIFICA {
             StatoVolo nuovoStato = StatoVolo.valueOf(statoSelezionato);
             String dataSelezionata = (String) comboBox2.getSelectedItem();         // "dd/MM/yyyy"
             String orarioInserito = Text1.getText();
+            String ritardoInserito = Text1.getText().trim();
+            LocalTime nuovoRitardo;
+
+            try {
+                nuovoRitardo = LocalTime.parse(ritardoInserito); // es. "00:20"
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ritardo non valido. Usa formato HH:mm", "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            volo.setRitardo(nuovoRitardo); // ✅ ora viene passato al DAO correttamente
 
                 LocalTime nuovoOrario;
 

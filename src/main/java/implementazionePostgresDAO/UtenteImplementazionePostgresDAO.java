@@ -146,7 +146,7 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
         if (volo instanceof VoloOrigine voloOrigine) {
             String sqlOrigine = """
             UPDATE "VoloOrigine"
-            SET "IdGate" = ?, "Data_Volo" = ?, "Ora_Volo_Prevista" = ?, "StatoVolo" = ?::"StatoVolo"
+            SET "IdGate" = ?, "Data_Volo" = ?, "Ritardo" = ?, "StatoVolo" = ?::"StatoVolo"
             WHERE "IdVolo" = ?
         """;
 
@@ -158,7 +158,7 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
 
                 ps1.setInt(1, gate.getIdGate());
                 ps1.setDate(2, Date.valueOf(volo.getData_Volo()));
-                ps1.setTime(3, Time.valueOf(volo.getOra_Volo_Prevista()));
+                ps1.setTime(3, Time.valueOf(volo.getRitardo()));
                 ps1.setString(4, volo.getStato().name());
                 ps1.setInt(5, volo.getIdVolo());
                 ps1.executeUpdate();
@@ -166,13 +166,13 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
         } else if (volo instanceof VoloDestinazione) {
             String sqlDestinazione = """
             UPDATE "VoloDestinazione"
-            SET "Data_Volo" = ?, "Ora_Volo_Prevista" = ?, "StatoVolo" = ?::"StatoVolo"
+            SET "Data_Volo" = ?, "Ritardo" = ?, "StatoVolo" = ?::"StatoVolo"
             WHERE "IdVolo" = ?
         """;
 
             try (PreparedStatement ps2 = connection.prepareStatement(sqlDestinazione)) {
                 ps2.setDate(1, Date.valueOf(volo.getData_Volo()));
-                ps2.setTime(2, Time.valueOf(volo.getOra_Volo_Prevista()));
+                ps2.setTime(2, Time.valueOf(volo.getRitardo()));
                 ps2.setString(3, volo.getStato().name());
                 ps2.setInt(4, volo.getIdVolo());
                 ps2.executeUpdate();

@@ -236,8 +236,47 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             }
         }
     }
+    public void inserisciVoloDestinazione(VoloDestinazione v) throws SQLException {
+        String sql = """
+        INSERT INTO "VoloDestinazione"
+            ("IdVolo", "Compagnia", "A_Volo_Origine", "A_Volo_Destinazione",
+             "Data_Volo", "Ora_Volo_Prevista", "Ritardo", "StatoVolo")
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?::"StatoVolo")
+    """;
 
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, v.getIdVolo());
+            ps.setString(2, v.getCompagnia());
+            ps.setString(3, v.getA_Volo_Origine());      // es: "Milano"
+            ps.setString(4, "Napoli");                   // ✈️ Arrivo = Napoli fisso
+            ps.setDate(5, Date.valueOf(v.getData_Volo()));
+            ps.setTime(6, Time.valueOf(v.getOra_Volo_Prevista()));
+            ps.setTime(7, Time.valueOf("00:00:00")); // valore fisso
+            ps.setString(8, v.getStato().name());
+            ps.executeUpdate();
+        }
+    }
+    public void inserisciVoloOrigine(VoloOrigine v) throws SQLException {
+        String sql = """
+        INSERT INTO "VoloOrigine"
+            ("IdVolo", "Compagnia", "A_Volo_Origine", "A_Volo_Destinazione",
+             "Data_Volo", "Ora_Volo_Prevista", "Ritardo", "StatoVolo", "IdGate")
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?::"StatoVolo", ?)
+    """;
 
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, v.getIdVolo());
+            ps.setString(2, v.getCompagnia());
+            ps.setString(3, "Napoli");  // Fisso perché è in partenza da Napoli
+            ps.setString(4, v.getA_Volo_Destinazione());
+            ps.setDate(5, Date.valueOf(v.getData_Volo()));
+            ps.setTime(6, Time.valueOf(v.getOra_Volo_Prevista()));
+            ps.setTime(7, Time.valueOf("00:00:00")); // Ritardo iniziale
+            ps.setString(8, v.getStato().name());
+            ps.setInt(9, v.getImbarco().getIdGate());
+            ps.executeUpdate();
+        }
+    }
 
     private Volo creaVoloDaResultSet(ResultSet rs) throws SQLException {
         int idVolo = rs.getInt("IdVolo");

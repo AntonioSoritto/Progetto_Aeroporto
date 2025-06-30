@@ -80,7 +80,7 @@
               <background color="-393229"/>
               <font name="Segoe UI Black"/>
               <foreground color="-16772865"/>
-              <text value="Data e ora"/>
+              <text value="Data e ritardo"/>
             </properties>
           </component>
           <component id="8818b" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
@@ -135,7 +135,7 @@
             </constraints>
             <properties>
               <caretColor color="-16777216"/>
-              <text value="00:00"/>
+              <text value="00:00:00"/>
             </properties>
           </component>
         </children>

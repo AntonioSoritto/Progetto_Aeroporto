@@ -6,9 +6,7 @@ import DAO.VoloDAO;
 import GUI.*;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
 import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
-import model.Prenotazione;
-import model.StatoPrenotazione;
-import model.Volo;
+import model.*;
 import Util.ConnessioneDatabase;
 
 import javax.swing.*;
@@ -241,9 +239,13 @@ return dao.cercaPerIdPrenotazione(id);
         VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
         dao.aggiornaStatoPrenotazione(idPren, nuovoStato);
     }
-
-
-
-
+    public static void aggiungiVoloDestinazione(VoloDestinazione volo) throws SQLException {
+        Connection conn = ConnessioneDatabase.getInstance().connection;
+        new VoloImplementazionePostgresDAO().inserisciVoloDestinazione(volo);
+    }
+    public static void aggiungiVoloOrigine(VoloOrigine volo) throws SQLException {
+        Connection conn = ConnessioneDatabase.getInstance().connection;
+        new VoloImplementazionePostgresDAO().inserisciVoloOrigine(volo);
+    }
 
 }

@@ -18,7 +18,7 @@
           <background color="-8389889"/>
           <font name="Segoe UI Black"/>
           <foreground color="-16772865"/>
-          <text value="Aggiungi volo in arrivo"/>
+          <text value="Aggiungi volo in partenza"/>
         </properties>
       </component>
       <grid id="26f5f" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
