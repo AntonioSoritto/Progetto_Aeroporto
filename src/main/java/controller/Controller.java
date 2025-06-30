@@ -116,12 +116,6 @@ return dao.cercaPerNumeroVolo(numero);
         return dao.cercaPerNomeIntestatario(nome, cognome);
     }
 
-
-
-
-
-
-
     public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
      Connection conn = ConnessioneDatabase.getInstance().connection;
 
@@ -187,7 +181,7 @@ return dao.cercaPerIdPrenotazione(id);
 
             JFrame frame = new JFrame("MODIFICA VOLO");
             frame.setContentPane(new MODIFICA(volo).getPanel());
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
@@ -219,10 +213,11 @@ return dao.cercaPerIdPrenotazione(id);
 
                 JFrame f = new JFrame("Modifica Prenotazione");
                 f.setContentPane(gui.getPanel());
-                f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.pack();
                 f.setLocationRelativeTo(null);
                 f.setVisible(true);
+
             });
 
         } catch (SQLException e) {

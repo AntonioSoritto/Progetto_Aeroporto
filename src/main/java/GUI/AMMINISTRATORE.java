@@ -3,6 +3,7 @@ package GUI;
 import controller.Controller;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
 
 public class AMMINISTRATORE {
@@ -46,8 +47,8 @@ public class AMMINISTRATORE {
                 case "Numero volo":
                     try {
                         int numero = Integer.parseInt(testo);
-                        // apre la GUI di modifica volo
                         Controller.apriModifica(numero);
+                        SwingUtilities.getWindowAncestor(cercaButton).dispose();
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(
                                 null,
@@ -62,6 +63,7 @@ public class AMMINISTRATORE {
                     try {
                         int idPren = Integer.parseInt(testo);
                         Controller.apriModificaPrenotazione(idPren);
+                        SwingUtilities.getWindowAncestor(cercaButton).dispose();
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(
                                 null,

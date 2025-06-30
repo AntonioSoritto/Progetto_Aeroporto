@@ -20,9 +20,8 @@ private Prenotazione prenotazione;
         confermaButton.addActionListener(e -> {
             try {
                 String nuovoStato = comboBox5.getSelectedItem().toString();
-                Connection conn = ConnessioneDatabase.getInstance().connection;
-                VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
-                dao.aggiornaStatoPrenotazione(prenotazione.getNumero(), nuovoStato);
+                Controller controller=new Controller();
+                controller.aggiornaStatoPrenotazione(prenotazione.getNumero(), nuovoStato);
 
                 JOptionPane.showMessageDialog(panelModifica, "Stato prenotazione aggiornato ✅", "Salvato", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
@@ -35,6 +34,8 @@ private Prenotazione prenotazione;
         zuco.addActionListener(e -> {
             SwingUtilities.getWindowAncestor(zuco).dispose();
             Controller.apriAmministratore();
+
+
         });
 
 
