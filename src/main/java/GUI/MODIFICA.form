@@ -15,8 +15,8 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Segoe UI Black"/>
-          <foreground color="-16772865"/>
+          <font name="Gill Sans MT Condensed" size="17" style="1"/>
+          <foreground color="-12488731"/>
           <text value="Volo trovato correttamente!"/>
         </properties>
       </component>
@@ -35,8 +35,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Segoe UI Black"/>
-              <foreground color="-16772865"/>
+              <font name="Gill Sans MT Condensed" size="17" style="0"/>
+              <foreground color="-12488731"/>
               <text value="MODIFICA VOLO:"/>
             </properties>
           </component>
@@ -47,6 +47,7 @@
               </grid>
             </constraints>
             <properties>
+              <font name="Gill Sans MT Condensed" size="14" style="0"/>
               <foreground color="-16777216"/>
               <text value="0"/>
             </properties>
@@ -56,6 +57,8 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Gill Sans MT Condensed" size="16" style="0"/>
+              <foreground color="-16777216"/>
               <text value="GATE"/>
             </properties>
           </component>
@@ -78,8 +81,8 @@
             </constraints>
             <properties>
               <background color="-393229"/>
-              <font name="Segoe UI Black"/>
-              <foreground color="-16772865"/>
+              <font name="Gill Sans MT Condensed" size="16" style="0"/>
+              <foreground color="-16777216"/>
               <text value="Data e ritardo"/>
             </properties>
           </component>
@@ -88,6 +91,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Gill Sans MT Condensed" size="14" style="0"/>
               <foreground color="-16777216"/>
               <model>
                 <item value="28/06/2025"/>
@@ -135,6 +139,7 @@
             </constraints>
             <properties>
               <caretColor color="-16777216"/>
+              <font name="Gill Sans MT Condensed" size="14" style="0"/>
               <text value="00:00:00"/>
             </properties>
           </component>
@@ -145,7 +150,8 @@
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <foreground color="-16777216"/>
+          <font name="Gill Sans MT Condensed" size="14" style="3"/>
+          <foreground color="-12488731"/>
           <text value="conferma"/>
         </properties>
       </component>
@@ -154,7 +160,8 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <foreground color="-16777216"/>
+          <font name="Gill Sans MT Condensed" size="14" style="3"/>
+          <foreground color="-12488731"/>
           <text value="indietro"/>
         </properties>
       </component>
@@ -163,6 +170,7 @@
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Gill Sans MT Condensed" size="14" style="0"/>
           <foreground color="-16777216"/>
           <model>
             <item value="PROGRAMMATO"/>
@@ -178,8 +186,8 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Segoe UI Black"/>
-          <foreground color="-16772865"/>
+          <font name="Gill Sans MT Condensed" size="16" style="0"/>
+          <foreground color="-16777216"/>
           <text value="Stato volo"/>
         </properties>
       </component>
@@ -188,7 +196,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Arial Black"/>
+          <font name="Gill Sans MT Condensed" size="16" style="0"/>
           <text value="Label"/>
         </properties>
       </component>

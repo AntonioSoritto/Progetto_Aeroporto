@@ -15,8 +15,8 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Segoe UI Black"/>
-          <foreground color="-16772865"/>
+          <font name="Gill Sans MT Condensed" size="17"/>
+          <foreground color="-12488731"/>
           <text value="Trova un volo per le tue esigenze!"/>
         </properties>
       </component>
@@ -36,8 +36,35 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Gill Sans MT Condensed" size="14" style="0"/>
               <foreground color="-16777216"/>
               <model>
+                <item value="01/06/2025"/>
+                <item value="02/06/2025"/>
+                <item value="03/06/2025"/>
+                <item value="04/06/2025"/>
+                <item value="05/06/2025"/>
+                <item value="06/06/2025"/>
+                <item value="07/06/2025"/>
+                <item value="08/06/2025"/>
+                <item value="09/06/2025"/>
+                <item value="10/06/2025"/>
+                <item value="11/06/2025"/>
+                <item value="12/06/2025"/>
+                <item value="13/06/2025"/>
+                <item value="14/06/2025"/>
+                <item value="15/06/2025"/>
+                <item value="16/06/2025"/>
+                <item value="17/06/2025"/>
+                <item value="18/06/2025"/>
+                <item value="19/06/2025"/>
+                <item value="20/06/2025"/>
+                <item value="21/06/2025"/>
+                <item value="22/06/2025"/>
+                <item value="23/06/2025"/>
+                <item value="24/06/2025"/>
+                <item value="25/06/2025"/>
+                <item value="26/06/2025"/>
                 <item value="27/06/2025"/>
                 <item value="28/06/2025"/>
                 <item value="29/06/2025"/>
@@ -50,7 +77,29 @@
                 <item value="06/07/2025"/>
                 <item value="07/07/2025"/>
                 <item value="08/07/2025"/>
+                <item value="09/07/2025"/>
+                <item value="10/07/2025"/>
+                <item value="11/07/2025"/>
+                <item value="12/07/2025"/>
+                <item value="13/07/2025"/>
+                <item value="14/07/2025"/>
                 <item value="15/07/2025"/>
+                <item value="16/07/2025"/>
+                <item value="17/07/2025"/>
+                <item value="18/07/2025"/>
+                <item value="19/07/2025"/>
+                <item value="20/07/2025"/>
+                <item value="21/07/2025"/>
+                <item value="22/07/2025"/>
+                <item value="23/07/2025"/>
+                <item value="24/07/2025"/>
+                <item value="25/07/2025"/>
+                <item value="26/07/2025"/>
+                <item value="27/07/2025"/>
+                <item value="28/07/2025"/>
+                <item value="29/07/2025"/>
+                <item value="30/07/2025"/>
+                <item value="31/07/2025"/>
               </model>
             </properties>
           </component>
@@ -59,8 +108,8 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Segoe UI Black"/>
-              <foreground color="-16772865"/>
+              <font name="Gill Sans MT Condensed" size="16" style="0"/>
+              <foreground color="-16777216"/>
               <text value="Data"/>
             </properties>
           </component>
@@ -69,7 +118,8 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <foreground color="-16777216"/>
+              <font name="Gill Sans MT Condensed" size="14" style="3"/>
+              <foreground color="-12488731"/>
               <text value="Trova"/>
             </properties>
           </component>
@@ -85,7 +135,8 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <foreground color="-16777216"/>
+          <font name="Gill Sans MT Condensed" size="14" style="3"/>
+          <foreground color="-12488731"/>
           <text value="indietro"/>
         </properties>
       </component>
@@ -96,6 +147,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Gill Sans MT Condensed" size="14" style="0"/>
           <foreground color="-16777216"/>
           <text value="inserisci destinazione"/>
         </properties>

@@ -228,7 +228,7 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, stato);
-            ps.setInt(2, idPrenotazione);        // chiave da aggiornare
+            ps.setInt(2, idPrenotazione);
 
             int righe = ps.executeUpdate();
             if (righe == 0) {

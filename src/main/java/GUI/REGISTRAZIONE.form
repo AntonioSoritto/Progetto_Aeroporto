@@ -14,19 +14,10 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-16711681"/>
+          <background color="-8853761"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="316e6" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="Monospaced" size="20" style="1"/>
-              <text value="REGISTRATI E VOLA !"/>
-            </properties>
-          </component>
           <component id="32de7" class="javax.swing.JTextField" binding="textField1" default-binding="true">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -43,20 +34,13 @@
             </constraints>
             <properties/>
           </component>
-          <component id="f6e5e" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="login"/>
-            </properties>
-          </component>
           <component id="74e67" class="javax.swing.JLabel">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="password"/>
+              <font name="Gill Sans MT Condensed" size="16" style="0"/>
+              <text value="  password"/>
             </properties>
           </component>
           <component id="ba25d" class="javax.swing.JLabel">
@@ -64,6 +48,7 @@
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Gill Sans MT Condensed" size="16" style="0"/>
               <text value="Sei registrato?"/>
             </properties>
           </component>
@@ -72,7 +57,28 @@
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Gill Sans MT Condensed" size="14" style="3"/>
+              <foreground color="-12488731"/>
               <text value="registrati"/>
+            </properties>
+          </component>
+          <component id="f6e5e" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Gill Sans MT Condensed" size="16" style="0"/>
+              <text value="  login"/>
+            </properties>
+          </component>
+          <component id="316e6" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Gill Sans MT Condensed" size="16" style="1"/>
+              <foreground color="-12488731"/>
+              <text value="REGISTRATI E VOLA!"/>
             </properties>
           </component>
           <component id="f7a65" class="javax.swing.JButton" binding="LOGINButton" default-binding="true">
@@ -80,6 +86,8 @@
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Gill Sans MT Condensed" size="14" style="3"/>
+              <foreground color="-12488731"/>
               <text value="LOGIN"/>
             </properties>
           </component>

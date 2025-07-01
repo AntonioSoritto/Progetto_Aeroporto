@@ -28,7 +28,6 @@ public class Controller {
         frame.setVisible(true);
     }
 
-
     public static void apriAmministratore() {
         AMMINISTRATORE amministratore = new AMMINISTRATORE();
         JFrame frame = new JFrame("Interfaccia Aministratore");
@@ -289,4 +288,13 @@ public class Controller {
         new VoloImplementazionePostgresDAO().inserisciVoloOrigine(volo);
     }
 
+    public static void apriRegistrazione() {
+        JFrame frame = new JFrame("REGISTRAZIONE");
+        REGISTRAZIONE registrazione = new REGISTRAZIONE();
+        frame.setContentPane(registrazione.getPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 }

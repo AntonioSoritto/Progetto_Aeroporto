@@ -11,9 +11,11 @@ public class HOME {
     private JPasswordField passwordField1;
     private JButton VOLAButton;
     private JPanel panel;
+    private JButton indietroButton;
 
     public HOME() {
         VOLAButton.addActionListener(e -> {
+            Controller controller = new Controller();
             String email = textField1.getText();
             String password = new String(passwordField1.getPassword());
 
@@ -42,7 +44,12 @@ public class HOME {
                         "❌ Errore", JOptionPane.ERROR_MESSAGE);
             }
         });
+        indietroButton.addActionListener(e -> {
+            SwingUtilities.getWindowAncestor(indietroButton).dispose();
+            Controller.apriRegistrazione();
+        });
     }
+
 
     public JPanel getPanel() {
         return panel;
