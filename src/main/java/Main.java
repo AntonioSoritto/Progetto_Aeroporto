@@ -1,17 +1,13 @@
-import GUI.HOME;
-import model.StatoVolo;
-import model.Volo;
+import GUI.REGISTRAZIONE;
 
 import javax.swing.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("HOME");
-            HOME home = new HOME();
-            frame.setContentPane(home.getPanel());
+            JFrame frame = new JFrame("REGISTRAZIONE");
+            REGISTRAZIONE registrazione = new REGISTRAZIONE();
+            frame.setContentPane(registrazione.getPanel());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null);

@@ -1,5 +1,6 @@
 package DAO;
 
+import model.Utente;
 import model.Volo;
 
 import java.sql.SQLException;
@@ -14,4 +15,5 @@ public interface UtenteDAO {
     boolean loginValido(String login, String password) throws SQLException;
     boolean isAdmin(String login) throws SQLException;
     public void aggiornaVolo(Volo volo) throws SQLException;
+    void inserisciUtente(Utente nuovo) throws SQLException;
 }

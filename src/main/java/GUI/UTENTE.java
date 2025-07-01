@@ -54,7 +54,6 @@ public class UTENTE {
                     break;
 
                 case "Nome prenotazione":
-                    // 1. suddivido il testo in nome + cognome
                     String[] parts = valore.split("\\s+", 2);
                     if (parts.length < 2) {
                         JOptionPane.showMessageDialog(

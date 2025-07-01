@@ -232,7 +232,12 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
 
             int righe = ps.executeUpdate();
             if (righe == 0) {
-                throw new SQLException("Nessuna prenotazione trovata con ID: " + idPrenotazione);
+                throw new SQLException("""
+                                        ⚠️ Attenzione
+                                        ──────────────────────────
+                                        Nessuna prenotazione trovata con ID: """ + idPrenotazione + """
+                                        Verifica il numero inserito e riprova.
+                                        """);
             }
         }
     }
@@ -247,11 +252,11 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, v.getIdVolo());
             ps.setString(2, v.getCompagnia());
-            ps.setString(3, v.getA_Volo_Origine());      // es: "Milano"
-            ps.setString(4, "Napoli");                   // ✈️ Arrivo = Napoli fisso
+            ps.setString(3, v.getA_Volo_Origine());
+            ps.setString(4, "Napoli");
             ps.setDate(5, Date.valueOf(v.getData_Volo()));
             ps.setTime(6, Time.valueOf(v.getOra_Volo_Prevista()));
-            ps.setTime(7, Time.valueOf("00:00:00")); // valore fisso
+            ps.setTime(7, Time.valueOf("00:00:00"));
             ps.setString(8, v.getStato().name());
             ps.executeUpdate();
         }

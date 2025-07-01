@@ -2,10 +2,7 @@ package implementazionePostgresDAO;
 
 import DAO.UtenteDAO;
 import Util.ConnessioneDatabase;
-import model.Gate;
-import model.Volo;
-import model.VoloDestinazione;
-import model.VoloOrigine;
+import model.*;
 
 import java.sql.*;
 import java.util.Random;
@@ -91,7 +88,12 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
                 if (rs.next()) {
                     return rs.getInt("numero");
                 } else {
-                    throw new SQLException("⚠️ Errore: nessun ID di prenotazione restituito.");
+                    throw new SQLException("""
+                                        ⚠️ Errore
+                                        ──────────────
+                                        Nessun ID di prenotazione è stato restituito dalla procedura.
+                                        Controlla che l'inserimento sia andato a buon fine.
+                                        """);
                 }
             }
         }
@@ -134,8 +136,12 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             if (rs.next()) {
                 return rs.getBoolean("isAdmin");
             } else {
-                throw new SQLException("Utente non trovato: " + login);
-            }
+                throw new SQLException("""
+                                        ❌ Errore
+                                        ──────────────
+                                        Utente non trovato nel sistema: """ + login + """
+                                        Verifica le credenziali o registra un nuovo account.
+                                        """);            }
         }
     }
 
@@ -153,8 +159,13 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             try (PreparedStatement ps1 = connection.prepareStatement(sqlOrigine)) {
                 Gate gate = voloOrigine.getImbarco();
                 if (gate == null) {
-                    throw new SQLException("⚠️ Impossibile salvare: il Gate è nullo per VoloOrigine");
-                }
+                    throw new SQLException("""
+                                            ⚠️ Errore salvataggio
+                                            ──────────────────────────
+                                            Impossibile completare l’operazione: il Gate associato al VoloOrigine è nullo.
+
+                                            Verifica che un gate valido sia stato assegnato prima del salvataggio.
+                                            """);                }
 
                 ps1.setInt(1, gate.getIdGate());
                 ps1.setDate(2, Date.valueOf(volo.getData_Volo()));
@@ -181,4 +192,20 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             throw new IllegalArgumentException("Tipo di volo sconosciuto: " + volo.getClass().getSimpleName());
         }
     }
-}
+
+    @Override
+    public void inserisciUtente(Utente u) throws SQLException {
+        String sql = """
+        INSERT INTO "Utente" ("Login", "Password", "isAdmin")
+        VALUES (?, ?, ?)
+    """;
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, u.getLogin());
+            ps.setString(2, u.getPassword());
+            ps.setBoolean(3, u.isAdmin());
+            ps.executeUpdate();
+        }
+    }
+    }
+

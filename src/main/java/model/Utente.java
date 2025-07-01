@@ -2,6 +2,7 @@ package model;
 
 public class Utente {
     private String login, password;
+    private boolean isAdmin;
 
     public Utente(String login, String password) {
         this.login = login;
@@ -21,5 +22,16 @@ public class Utente {
     }
     public void VisualizzaVolo(Volo v){
         System.out.printf(v.getIdVolo()+"\n"+v.getA_Volo_Destinazione()+"\n"+v.getA_Volo_Origine()+"\n"+v.getCompagnia()+"\n"+v.getData_Volo()+"\n"+v.getOra_Volo_Prevista()+"\n"+v.getRitardo()+"\n"+v.getStato()+"\n");
+
     }
+    public boolean isAdmin() {
+
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.isAdmin = admin;
+    }
+
+
 }

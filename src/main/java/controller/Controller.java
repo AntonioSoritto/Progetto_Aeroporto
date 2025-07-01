@@ -74,8 +74,17 @@ public class Controller {
         List<Volo> voli = cercaMeta(destinazione, data);
 
         if (voli.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "NESSUN VOLO TROVATO");
-            apriPrenotazione(); // opzionale: riapri la schermata precedente
+            JOptionPane.showMessageDialog(
+                    null,
+                    """
+                    ℹ️ Informazione
+                    ─────────────────────
+                    Nessun volo corrispondente è stato trovato.
+                    Verifica il numero inserito e riprova.
+                    """,
+                    "Ricerca voli",
+                    JOptionPane.INFORMATION_MESSAGE
+            );            apriPrenotazione(); // opzionale: riapri la schermata precedente
             return;
         }
 
@@ -99,29 +108,25 @@ public class Controller {
     }
 
 
-public static List<Volo> cercaPerNumeroVolo(int numero) throws SQLException {
-    Connection conn = ConnessioneDatabase.getInstance().connection;
-
-    VoloDAO dao = new VoloImplementazionePostgresDAO();
-return dao.cercaPerNumeroVolo(numero);
-}
+    public static List<Volo> cercaPerNumeroVolo(int numero) throws SQLException {
+     Connection conn = ConnessioneDatabase.getInstance().connection;
+        VoloDAO dao = new VoloImplementazionePostgresDAO();
+    return dao.cercaPerNumeroVolo(numero);
+    }
 
     public static List<Volo> cercaPerNomeIntestatario(String nome, String cognome)
             throws SQLException {
-        // 1) Recupera la connessione aperta
-        Connection conn = ConnessioneDatabase.getInstance().connection;
-        // 2) Costruisci il DAO passando la Connection
-        VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
-        // 3) Delega la query al DAO
+            Connection conn = ConnessioneDatabase.getInstance().connection;
+         VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
         return dao.cercaPerNomeIntestatario(nome, cognome);
     }
 
     public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
      Connection conn = ConnessioneDatabase.getInstance().connection;
+        VoloDAO dao = new VoloImplementazionePostgresDAO();
+    return dao.cercaPerIdPrenotazione(id);
+    }
 
-     VoloDAO dao = new VoloImplementazionePostgresDAO();
-return dao.cercaPerIdPrenotazione(id);
-}
     public static List<Volo> cercaMeta(String destinazione, LocalDate data) {
         VoloDAO dao = new VoloImplementazionePostgresDAO();
         return dao.cercaMeta(destinazione, data);
@@ -130,31 +135,44 @@ return dao.cercaPerIdPrenotazione(id);
         try {
             UtenteDAO dao = new UtenteImplementazionePostgresDAO();
 
-            // 1. Se non esiste il passeggero, lo creo
             if (!dao.passeggeroEsiste(idDocumento)) {
                 dao.creaPasseggero(nome, cognome, idDocumento);
             }
 
-            // 🔁 Nessun controllo per prenotazioni già esistenti
-
-            // 2. Genera posto casuale unico
             String posto = dao.generaPostoLibero(volo.getIdVolo());
 
-            // 3. Genera numero prenotazione e inserisce
             int numeroPrenotazione = dao.generaNumeroPrenotazioneUnico();
             int idGenerato = dao.creaPrenotazione(
                     numeroPrenotazione, volo.getIdVolo(), idDocumento, numBagagli, posto);
 
-            // 4. Banner di conferma
-            JOptionPane.showMessageDialog(null,
-                    "✅ Prenotazione effettuata!\nNumero: " + idGenerato + "\nPosto: " + posto,
-                    "Conferma", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    null,
+                    """
+                    ✅ Prenotazione effettuata
+                    ───────────────────────────
+                    Numero prenotazione: """ + idGenerato + """
+    
+                    Posto assegnato: """ + posto + """
+                    """,
+                    "Conferma",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
 
             return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Errore durante la prenotazione", "❌", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    null,
+                    """
+                    ❌ Errore
+                    ──────────────
+                    Si è verificato un problema durante la prenotazione.
+                    Riprova o contatta l’assistenza.
+                    """,
+                    "Errore prenotazione",
+                    JOptionPane.ERROR_MESSAGE
+            );
             return false;
         }
     }
@@ -172,12 +190,15 @@ return dao.cercaPerIdPrenotazione(id);
 
             if (voli.isEmpty()) {
                 JOptionPane.showMessageDialog(null,
-                        "⚠️ Nessun volo trovato con questo numero",
+                        "❗ Attenzione\n" +
+                                "──────────────\n" +
+                                "Non è stato trovato alcun volo con il numero inserito.\n" +
+                                "Verifica e riprova.",
                         "Volo non trovato", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            Volo volo = voli.get(0); // Per ora usiamo il primo (modificabile)
+            Volo volo = voli.get(0);
 
             JFrame frame = new JFrame("MODIFICA VOLO");
             frame.setContentPane(new MODIFICA(volo).getPanel());
@@ -188,9 +209,17 @@ return dao.cercaPerIdPrenotazione(id);
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,
-                    "Errore durante la ricerca del volo",
-                    "❌ Errore", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    null,
+                    """
+                    ❌ Errore
+                    ──────────────
+                    Si è verificato un problema durante la ricerca del volo.
+                    Assicurati che i dati inseriti siano corretti.
+                    """,
+                    "Errore ricerca volo",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 
@@ -201,9 +230,18 @@ return dao.cercaPerIdPrenotazione(id);
             Prenotazione pren = dao.cercaPerIdPrenotazionePrenotazione(idPren);
 
             if (pren == null) {
-                JOptionPane.showMessageDialog(null,
-                        "Prenotazione con ID " + idPren + " non trovata.",
-                        "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        null,
+                        """
+                        ❌ Errore
+                        ──────────────
+                        Nessuna prenotazione trovata con ID """ + idPren + """
+    
+                        Verifica il numero e riprova.
+                        """,
+                        "Prenotazione non trovata",
+                        JOptionPane.ERROR_MESSAGE
+                );
                 return;
             }
 
@@ -222,9 +260,17 @@ return dao.cercaPerIdPrenotazione(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,
-                    "Errore durante l’apertura della modifica prenotazione",
-                    "❌ Errore", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    null,
+                    """
+                    ❌ Errore
+                    ──────────────
+                    Si è verificato un problema durante l'apertura della schermata di modifica.
+                    Riprova più tardi o verifica i dati inseriti.
+                    """,
+                    "Errore apertura modifica",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 

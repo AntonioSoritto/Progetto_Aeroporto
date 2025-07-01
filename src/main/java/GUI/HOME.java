@@ -6,9 +6,8 @@ import javax.swing.*;
 import java.lang.invoke.VolatileCallSite;
 
 public class HOME {
-    private JLabel Messaggio;
-    private JComboBox comboBox1;
     private JTextField textField1;
+    private JLabel Messaggio;
     private JPasswordField passwordField1;
     private JButton VOLAButton;
     private JPanel panel;
