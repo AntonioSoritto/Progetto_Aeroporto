@@ -15,7 +15,6 @@ public class UTENTE {
     private JComboBox comboBox1;
     private JTextField textField1;
     private JPanel Panel1;
-    private JPanel Panel;
     private JButton cercaButton;
     private JButton logoutButton;
 
@@ -48,7 +47,17 @@ public class UTENTE {
                         int numero = Integer.parseInt(valore);
                         risultati = Controller.cercaPerNumeroVolo(numero);
                     } catch (NumberFormatException | SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Numero volo non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                """
+                                ❌ Errore
+                                ──────────────
+                                Il numero del volo inserito non è valido.
+                                Inserisci un valore corretto e riprova.
+                                """,
+                                "Errore",
+                                JOptionPane.ERROR_MESSAGE
+                        );
                         return;
                     }
                     break;
@@ -58,7 +67,11 @@ public class UTENTE {
                     if (parts.length < 2) {
                         JOptionPane.showMessageDialog(
                                 null,
-                                "Inserisci Nome e Cognome separati da uno spazio",
+                                """
+                                ❌ Errore
+                                ──────────────
+                                Inserisci nome e cognome separati da uno spazio.
+                                """,
                                 "Errore",
                                 JOptionPane.ERROR_MESSAGE
                         );
@@ -73,7 +86,12 @@ public class UTENTE {
                         ex.printStackTrace();
                         JOptionPane.showMessageDialog(
                                 null,
-                                "Errore accesso database",
+                                """
+                                ❌ Errore
+                                ──────────────
+                                Si è verificato un errore durante l’accesso al database.
+                                Riprova più tardi o verifica la connessione.
+                                """,
                                 "Errore",
                                 JOptionPane.ERROR_MESSAGE
                         );
@@ -86,7 +104,17 @@ public class UTENTE {
                         int id = Integer.parseInt(valore);
                         risultati = Controller.cercaPerIdPrenotazione(id);
                     } catch (NumberFormatException | SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "ID non valido", "Errore", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                """
+                                ❌ Errore
+                                ──────────────
+                                L'ID inserito non è valido.
+                                Inserisci un valore corretto e riprova.
+                                """,
+                                "Errore",
+                                JOptionPane.ERROR_MESSAGE
+                        );
                         return;
                     }
                     break;

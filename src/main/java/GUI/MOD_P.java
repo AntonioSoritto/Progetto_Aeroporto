@@ -20,13 +20,31 @@ public class MOD_P {
                 Controller controller=new Controller();
                 controller.aggiornaStatoPrenotazione(prenotazione.getNumero(), nuovoStato);
 
-                JOptionPane.showMessageDialog(panel1, "Stato prenotazione aggiornato ✅", "Salvato", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        panel1,
+                        """
+                        ✅ Salvataggio riuscito
+                        ─────────────────────────
+                        Lo stato della prenotazione è stato aggiornato correttamente.
+                        """,
+                        "Salvato",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             } catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(panel1, "Errore durante il salvataggio", "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        panel1,
+                        """
+                        ❌ Errore
+                        ──────────────
+                        Si è verificato un errore durante il salvataggio.
+                        Riprova oppure verifica i dati inseriti.
+                        """,
+                        "Errore",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
         });
-
 
         indietroButton.addActionListener(e -> {
             SwingUtilities.getWindowAncestor(indietroButton).dispose();

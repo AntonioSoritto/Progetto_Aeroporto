@@ -16,7 +16,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class MODIFICA {
-    private Volo volo; // oggetto volo da modificare
+    private Volo volo;
 
     private JTextField IMPOSTANUOVOGATETextField;
     private JComboBox<String> comboBox2;
@@ -55,26 +55,46 @@ public class MODIFICA {
 
             String statoSelezionato = comboBox5.getSelectedItem().toString();
             StatoVolo nuovoStato = StatoVolo.valueOf(statoSelezionato);
-            String dataSelezionata = (String) comboBox2.getSelectedItem();         // "dd/MM/yyyy"
+            String dataSelezionata = (String) comboBox2.getSelectedItem();
             String orarioInserito = Text1.getText();
             String ritardoInserito = Text1.getText().trim();
             LocalTime nuovoRitardo;
 
             try {
-                nuovoRitardo = LocalTime.parse(ritardoInserito); // es. "00:20"
+                nuovoRitardo = LocalTime.parse(ritardoInserito);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Ritardo non valido. Usa formato HH:mm", "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        null,
+                        """
+                        ❌ Errore
+                        ──────────────
+                        Ritardo non valido.
+                        Usa il formato corretto: HH:mm (es. 14:30).
+                        """,
+                        "Errore",
+                        JOptionPane.ERROR_MESSAGE
+                );
                 return;
             }
 
-            volo.setRitardo(nuovoRitardo); // ✅ ora viene passato al DAO correttamente
+            volo.setRitardo(nuovoRitardo);
 
                 LocalTime nuovoOrario;
 
                 try {
                     nuovoOrario = LocalTime.parse(orarioInserito);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Formato orario non valido. Usa 'HH:mm'", "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                            null,
+                            """
+                            ❌ Errore
+                            ──────────────
+                            Formato orario non valido.
+                            Usa il formato corretto: HH:mm (es. 09:45).
+                            """,
+                            "Errore",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                     return;
                 }
              LocalDate nuovaData = LocalDate.parse(dataSelezionata, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -87,10 +107,29 @@ public class MODIFICA {
             }
             try {
                 new UtenteImplementazionePostgresDAO().aggiornaVolo(volo);
-                JOptionPane.showMessageDialog(null, "Volo aggiornato correttamente ✈️", "✅ Successo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        null,
+                        """
+                        ✅ Successo
+                        ─────────────────────────
+                        Il volo è stato aggiornato correttamente.
+                        """,
+                        "Volo aggiornato",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Errore durante l’aggiornamento del volo", "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        null,
+                        """
+                        ❌ Errore
+                        ──────────────
+                        Si è verificato un errore durante l’aggiornamento del volo.
+                        Riprova oppure verifica i dati inseriti.
+                        """,
+                        "Errore",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
         });
     }
@@ -99,6 +138,5 @@ public class MODIFICA {
     }
     public Container getPanel() { return panelModifica;
     }
-
 
 }

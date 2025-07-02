@@ -1,7 +1,6 @@
 package GUI;
 
 import controller.Controller;
-
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +9,8 @@ public class PRENOTAZIONE {
     private JTextField inserisciDestinazioneTextField;
     private JComboBox comboBox1;
     private JButton trovaButton;
+    private JPanel panel1;
+    private JButton indietroButton;
 
 public PRENOTAZIONE() {
     indietroButton.addActionListener(e -> {
@@ -29,10 +30,6 @@ public PRENOTAZIONE() {
     });
 
 }
-
-
-    private JPanel panel1;
-    private JButton indietroButton;
 
     public JPanel getPanel() {
         return panel1;

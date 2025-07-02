@@ -1,14 +1,11 @@
 package GUI;
 
 import controller.Controller;
-
 import javax.swing.*;
-import java.awt.*;
-import java.sql.SQLException;
+
 
 public class AMMINISTRATORE {
     private JLabel MessaggioA;
-    private JButton cercaVoloButton;
     private JButton partenzaButton;
     private JButton arrivoButton;
     private JPanel PANEL1;
@@ -31,7 +28,6 @@ public class AMMINISTRATORE {
             String criterio = (String) comboBox1.getSelectedItem();
             String testo   = textField1.getText().trim();
 
-            // controllo campo vuoto
             if (testo.isEmpty()) {
                 String msg = criterio.equals("Numero volo")
                         ? "Inserisci il numero del volo"
@@ -42,44 +38,64 @@ public class AMMINISTRATORE {
                 return;
             }
 
-            // in base al criterio scelto
             switch (criterio) {
                 case "Numero volo":
                     try {
                         int numero = Integer.parseInt(testo);
-                        Controller.apriModifica(numero);
-                        SwingUtilities.getWindowAncestor(cercaButton).dispose();
+                        boolean successo = Controller.apriModifica(numero);
+
+                        if (successo) {
+                            SwingUtilities.getWindowAncestor(cercaButton).dispose();
+                        }
+
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(
                                 null,
-                                "Il numero del volo deve essere un numero intero",
-                                "❌ Errore",
+                                """
+                                ❌ Errore
+                                ──────────────
+                                Il numero del volo deve essere un numero intero.
+                                Inserisci un valore valido e riprova.
+                                """,
+                                "Errore",
                                 JOptionPane.ERROR_MESSAGE
                         );
                     }
-                    break;
-
+                    return;
                 case "ID prenotazione":
                     try {
                         int idPren = Integer.parseInt(testo);
-                        Controller.apriModificaPrenotazione(idPren);
-                        SwingUtilities.getWindowAncestor(cercaButton).dispose();
+                        boolean successo = Controller.apriModificaPrenotazione(idPren);
+
+                        if (successo) {
+                            SwingUtilities.getWindowAncestor(cercaButton).dispose();
+                        }
+
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(
                                 null,
-                                "L'ID della prenotazione deve essere un numero intero",
-                                "❌ Errore",
+                                """
+                                ❌ Errore
+                                ──────────────
+                                L'ID della prenotazione deve essere un numero intero.
+                                Inserisci un valore corretto e riprova.
+                                """,
+                                "Errore",
                                 JOptionPane.ERROR_MESSAGE
                         );
                     }
-                    break;
+                    return;
 
                 default:
-                    // in teoria non ci arrivi mai, ma meglio mettere un fallback
                     JOptionPane.showMessageDialog(
                             null,
-                            "Criterio di ricerca non riconosciuto",
-                            "❌ Errore",
+                            """
+                            ❌ Errore
+                            ──────────────
+                            Criterio di ricerca non riconosciuto.
+                            Verifica la selezione e riprova.
+                            """,
+                            "Errore",
                             JOptionPane.ERROR_MESSAGE
                     );
             }

@@ -3,7 +3,6 @@ package GUI;
 import controller.Controller;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
 import model.Utente;
-
 import javax.swing.*;
 
 public class REGISTRAZIONE {
@@ -15,17 +14,13 @@ public class REGISTRAZIONE {
 
     public REGISTRAZIONE() {
         LOGINButton.addActionListener(e -> {
-            // Chiude la finestra di registrazione
             SwingUtilities.getWindowAncestor(LOGINButton).dispose();
-
-            // Apre la schermata di login (HOME)
             Controller.apriHome();
         });
         registratiButton.addActionListener(e -> {
             String login = textField1.getText().trim();
             String password = new String(passwordField1.getPassword()).trim();
 
-            // ⚠️ Validazioni
             if (login.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(null, """
                 ⚠️ Attenzione
@@ -55,7 +50,6 @@ public class REGISTRAZIONE {
                 ─────────────────────────────
                 Benvenuto a bordo, """ + login + "!", "Successo", JOptionPane.INFORMATION_MESSAGE);
 
-                // Chiude finestra attuale e apre la Home
                 SwingUtilities.getWindowAncestor(registratiButton).dispose();
                 Controller.apriHome();
 
@@ -76,6 +70,5 @@ public class REGISTRAZIONE {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

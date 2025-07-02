@@ -1,10 +1,8 @@
 package DAO;
 
-import model.Prenotazione;
-import model.StatoPrenotazione;
-import model.Volo;
-import model.VoloDestinazione;
+import model.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,4 +15,6 @@ public interface VoloDAO {
     List<Volo> cercaMeta(String destinazione, LocalDate data);
     public Prenotazione cercaPerIdPrenotazionePrenotazione(int idPren) throws SQLException;
     public void inserisciVoloDestinazione(VoloDestinazione v) throws SQLException;
+    void inserisciVoloOrigine(VoloOrigine v) throws SQLException;
+    Volo creaVoloDaResultSet(ResultSet rs) throws SQLException;
 }

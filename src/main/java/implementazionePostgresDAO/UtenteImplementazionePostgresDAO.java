@@ -3,7 +3,6 @@ package implementazionePostgresDAO;
 import DAO.UtenteDAO;
 import Util.ConnessioneDatabase;
 import model.*;
-
 import java.sql.*;
 import java.util.Random;
 

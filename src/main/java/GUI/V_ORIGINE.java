@@ -31,7 +31,6 @@ public class V_ORIGINE {
             Controller.apriAmministratore();
         });
 
-
         aggiungiButton.addActionListener(e -> {
             try {
                 int idVolo = Integer.parseInt(textField1.getText().trim());
@@ -56,15 +55,30 @@ public class V_ORIGINE {
                 volo.setImbarco(gate);
                 Controller.aggiungiVoloOrigine(volo);
 
-                JOptionPane.showMessageDialog(panel1,
-                        "Volo in partenza aggiunto con successo! 🛫",
-                        "Successo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        panel1,
+                        """
+                        ✅ Successo
+                        ─────────────────────────
+                        Il volo in partenza è stato aggiunto correttamente.
+                        """,
+                        "Volo aggiunto",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(panel1,
-                        "Errore durante l’inserimento del volo",
-                        "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        panel1,
+                        """
+                        ❌ Errore
+                        ──────────────
+                        Si è verificato un errore durante l’inserimento del volo.
+                        Verifica i dati inseriti e riprova.
+                        """,
+                        "Errore",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
         });
     }

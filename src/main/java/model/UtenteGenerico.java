@@ -15,18 +15,4 @@ public class UtenteGenerico extends Utente {
         return nome;
     }
 
-    public void Prenotazione(){
-
     }
-
-    public void CercaPrenotazione_codice(int idVolo){
-
-    }
-    public void CercaPrenotazione_nome(String nome){
-
-    }
-
-
-
-
-}

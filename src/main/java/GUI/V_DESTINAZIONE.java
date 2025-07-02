@@ -53,15 +53,30 @@ public class V_DESTINAZIONE {
 
                 Controller.aggiungiVoloDestinazione(volo);
 
-                JOptionPane.showMessageDialog(PANEL,
-                        "Volo in arrivo aggiunto correttamente 🛬", "Successo",
-                        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        PANEL,
+                        """
+                        ✅ Successo
+                        ─────────────────────────
+                        Il volo in arrivo è stato aggiunto correttamente.
+                        """,
+                        "Volo aggiunto",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(PANEL,
-                        "Errore durante l’inserimento del volo",
-                        "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        PANEL,
+                        """
+                        ❌ Errore
+                        ──────────────
+                        Si è verificato un errore durante l’inserimento del volo.
+                        Verifica i dati inseriti e riprova.
+                        """,
+                        "Errore",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
         });
     }

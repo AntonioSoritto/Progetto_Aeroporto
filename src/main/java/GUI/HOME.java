@@ -1,9 +1,7 @@
 package GUI;
 
 import controller.Controller;
-
 import javax.swing.*;
-import java.lang.invoke.VolatileCallSite;
 
 public class HOME {
     private JTextField textField1;
@@ -21,9 +19,17 @@ public class HOME {
 
             try {
                 if (!Controller.verificaLogin(email, password)) {
-                    JOptionPane.showMessageDialog(null,
-                            "Email o password errati",
-                            "Errore login", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                            null,
+                            """
+                            ❌ Errore
+                            ──────────────
+                            Email o password non validi.
+                            Controlla le credenziali inserite e riprova.
+                            """,
+                            "Errore login",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                     return;
                 }
 
@@ -39,9 +45,17 @@ public class HOME {
 
             } catch (Exception ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null,
-                        "Errore durante il login",
-                        "❌ Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        null,
+                        """
+                        ❌ Errore
+                        ──────────────
+                        Si è verificato un errore durante il login.
+                        Controlla le credenziali e riprova.
+                        """,
+                        "Errore login",
+                        JOptionPane.ERROR_MESSAGE
+                );
             }
         });
         indietroButton.addActionListener(e -> {
@@ -49,7 +63,6 @@ public class HOME {
             Controller.apriRegistrazione();
         });
     }
-
 
     public JPanel getPanel() {
         return panel;

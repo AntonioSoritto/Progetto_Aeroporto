@@ -4,7 +4,6 @@ import DAO.VoloDAO;
 import model.StatoVolo;
 import Util.ConnessioneDatabase;
 import model.*;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -102,6 +101,7 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         }
     }
 
+    @Override
     public Prenotazione cercaPerIdPrenotazionePrenotazione(int idPren) throws SQLException {
         String sql = """
         SELECT "numero", "IdVolo", "idDocumento", "StatoPrenotazione"
@@ -126,7 +126,7 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             }
         }
 
-        return null; // Nessuna prenotazione trovata
+        return null;
     }
 
     @Override
@@ -151,8 +151,6 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        // Seconda query: cerca nel VoloDestinazione
         String queryDestinazione = """
         SELECT v.*
         FROM "Prenotazioni" p
@@ -219,6 +217,7 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         return voli;
     }
 
+    @Override
     public void aggiornaStatoPrenotazione(int idPrenotazione, String stato) throws SQLException {
         String sql = """
         UPDATE "Prenotazioni"
@@ -241,6 +240,8 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             }
         }
     }
+
+    @Override
     public void inserisciVoloDestinazione(VoloDestinazione v) throws SQLException {
         String sql = """
         INSERT INTO "VoloDestinazione"
@@ -261,6 +262,8 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             ps.executeUpdate();
         }
     }
+
+    @Override
     public void inserisciVoloOrigine(VoloOrigine v) throws SQLException {
         String sql = """
         INSERT INTO "VoloOrigine"
@@ -283,7 +286,8 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         }
     }
 
-    private Volo creaVoloDaResultSet(ResultSet rs) throws SQLException {
+    @Override
+    public Volo creaVoloDaResultSet(ResultSet rs) throws SQLException {
         int idVolo = rs.getInt("IdVolo");
         String compagnia = rs.getString("Compagnia");
         String origine = rs.getString("A_Volo_Origine");
@@ -301,7 +305,6 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
                 gate = new Gate(idGate);
             }
         } catch (SQLException ignored) {
-            // Colonna IdGate non presente → volo di destinazione
         }
         if (gate != null) {
             VoloOrigine vo = new VoloOrigine();
@@ -313,7 +316,7 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             vo.setOra_Volo_Prevista(ora);
             vo.setRitardo(ritardo);
             vo.setStato(stato);
-            vo.setImbarco(gate); // ✅ ID del Gate assegnato
+            vo.setImbarco(gate);
             return vo;
         } else {
             VoloDestinazione vd = new VoloDestinazione();

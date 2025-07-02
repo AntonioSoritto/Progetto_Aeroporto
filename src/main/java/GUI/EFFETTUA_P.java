@@ -17,7 +17,7 @@ public class EFFETTUA_P {
     private JPanel panel1;
     private JButton indietroButton;
 
-    List<Volo> voliTrovati; // salva nei campi della classe
+    List<Volo> voliTrovati;
 
     public EFFETTUA_P(String destinazione, LocalDate data) {
         voliTrovati = Controller.cercaMeta(destinazione, data);

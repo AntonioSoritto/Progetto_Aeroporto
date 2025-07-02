@@ -1,4 +1,3 @@
-import GUI.REGISTRAZIONE;
 import controller.Controller;
 
 import javax.swing.*;

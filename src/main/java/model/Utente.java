@@ -20,10 +20,7 @@ public class Utente {
     public String getPassword() {
         return password;
     }
-    public void VisualizzaVolo(Volo v){
-        System.out.printf(v.getIdVolo()+"\n"+v.getA_Volo_Destinazione()+"\n"+v.getA_Volo_Origine()+"\n"+v.getCompagnia()+"\n"+v.getData_Volo()+"\n"+v.getOra_Volo_Prevista()+"\n"+v.getRitardo()+"\n"+v.getStato()+"\n");
 
-    }
     public boolean isAdmin() {
 
         return isAdmin;
