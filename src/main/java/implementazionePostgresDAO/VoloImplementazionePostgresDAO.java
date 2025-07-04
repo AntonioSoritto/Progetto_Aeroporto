@@ -133,7 +133,6 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
     public List<Volo> cercaPerIdPrenotazione(int id) {
         List<Volo> voli = new ArrayList<>();
 
-        // Prima query: cerca nel VoloOrigine
         String queryOrigine = """
         SELECT v.*, v."IdGate"
         FROM "Prenotazioni" p
@@ -294,18 +293,24 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         String destinazione = rs.getString("A_Volo_Destinazione");
         LocalDate data = rs.getDate("Data_Volo").toLocalDate();
         LocalTime ora = rs.getTime("Ora_Volo_Prevista").toLocalTime();
-        LocalTime ritardo = rs.getTime("Ritardo").toLocalTime();
+
+
+        LocalTime ritardo = null;
+        Time ritardoSQL = rs.getTime("Ritardo");
+        if (ritardoSQL != null) {
+            ritardo = ritardoSQL.toLocalTime();
+        }
+
         StatoVolo stato = StatoVolo.valueOf(rs.getString("StatoVolo"));
 
 
         Gate gate = null;
-        try {
-            int idGate = rs.getInt("IdGate");
-            if (!rs.wasNull()) {
-                gate = new Gate(idGate);
-            }
-        } catch (SQLException ignored) {
+        int idGate = rs.getInt("IdGate");
+        if (!rs.wasNull()) {
+            gate = new Gate(idGate);
         }
+
+
         if (gate != null) {
             VoloOrigine vo = new VoloOrigine();
             vo.setIdVolo(idVolo);

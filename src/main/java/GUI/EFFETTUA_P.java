@@ -37,7 +37,7 @@ public class EFFETTUA_P {
 
             if (successo) {
                 SwingUtilities.getWindowAncestor(prenotaButton).dispose();
-                Controller.apriPrenotazione(); // o schermata di conferma
+                Controller.apriPrenotazione();
             }
         });
 

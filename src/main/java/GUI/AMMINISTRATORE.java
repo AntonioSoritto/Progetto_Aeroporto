@@ -19,11 +19,17 @@ public class AMMINISTRATORE {
         logoutButton.addActionListener(e -> {
 
             SwingUtilities.getWindowAncestor(logoutButton).dispose();
-
             Controller.apriHome();
         });
-        partenzaButton.addActionListener(e -> Controller.apriPartenza());
-        arrivoButton.addActionListener(e -> Controller.apriArrivo());
+        partenzaButton.addActionListener(e ->
+        {
+            SwingUtilities.getWindowAncestor(partenzaButton).dispose();
+            Controller.apriPartenza();
+        });
+        arrivoButton.addActionListener(e -> {
+            SwingUtilities.getWindowAncestor(arrivoButton).dispose();
+            Controller.apriArrivo();
+        });
         cercaButton.addActionListener(e -> {
             String criterio = (String) comboBox1.getSelectedItem();
             String testo   = textField1.getText().trim();

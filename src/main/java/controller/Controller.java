@@ -8,12 +8,12 @@ import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
 import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
 import model.*;
 import Util.ConnessioneDatabase;
-
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+
 
 public class Controller {
 
@@ -22,7 +22,7 @@ public class Controller {
         UTENTE utente = new UTENTE();
         JFrame frame = new JFrame("Interfaccia Utente");
         frame.setContentPane(utente.getPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -32,7 +32,7 @@ public class Controller {
         AMMINISTRATORE amministratore = new AMMINISTRATORE();
         JFrame frame = new JFrame("Interfaccia Aministratore");
         frame.setContentPane(amministratore.getPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -43,7 +43,7 @@ public class Controller {
         PRENOTAZIONE prenotazione = new PRENOTAZIONE();
         JFrame frame = new JFrame("Prenotazione volo");
         frame.setContentPane(prenotazione.getPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -51,7 +51,7 @@ public class Controller {
 
 
     public static void apriArrivo() {
-        V_ORIGINE v = new V_ORIGINE(); // o V_ORIGINE se è davvero la GUI giusta
+        V_ORIGINE v = new V_ORIGINE();
         JFrame frame = new JFrame("Inserisci Arrivo");
         frame.setContentPane(v.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,7 +61,7 @@ public class Controller {
     }
 
     public static void apriPartenza() {
-        V_DESTINAZIONE v = new V_DESTINAZIONE(); // o V_ORIGINE se è davvero la GUI giusta
+        V_DESTINAZIONE v = new V_DESTINAZIONE();
         JFrame frame = new JFrame("Inserisci Partenza");
         frame.setContentPane(v.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -108,20 +108,20 @@ public class Controller {
 
 
     public static List<Volo> cercaPerNumeroVolo(int numero) throws SQLException {
-     Connection conn = ConnessioneDatabase.getInstance().connection;
+
         VoloDAO dao = new VoloImplementazionePostgresDAO();
     return dao.cercaPerNumeroVolo(numero);
     }
 
     public static List<Volo> cercaPerNomeIntestatario(String nome, String cognome)
             throws SQLException {
-            Connection conn = ConnessioneDatabase.getInstance().connection;
+
          VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
         return dao.cercaPerNomeIntestatario(nome, cognome);
     }
 
     public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
-     Connection conn = ConnessioneDatabase.getInstance().connection;
+
         VoloDAO dao = new VoloImplementazionePostgresDAO();
     return dao.cercaPerIdPrenotazione(id);
     }
@@ -130,38 +130,53 @@ public class Controller {
         VoloDAO dao = new VoloImplementazionePostgresDAO();
         return dao.cercaMeta(destinazione, data);
     }
+
     public static boolean effettuaPrenotazione(String nome, String cognome, String idDocumento, Volo volo, int numBagagli) {
-        try {
-            UtenteDAO dao = new UtenteImplementazionePostgresDAO();
+     try {
+          UtenteDAO dao = new UtenteImplementazionePostgresDAO();
 
             if (!dao.passeggeroEsiste(idDocumento)) {
-                dao.creaPasseggero(nome, cognome, idDocumento);
+             dao.creaPasseggero(nome, cognome, idDocumento);
             }
 
-            String posto = dao.generaPostoLibero(volo.getIdVolo());
+         String posto = dao.generaPostoLibero(volo.getIdVolo());
 
             int numeroPrenotazione = dao.generaNumeroPrenotazioneUnico();
             int idGenerato = dao.creaPrenotazione(
-                    numeroPrenotazione, volo.getIdVolo(), idDocumento, numBagagli, posto);
+                numeroPrenotazione, volo.getIdVolo(), idDocumento, numBagagli, posto);
 
-            JOptionPane.showMessageDialog(
-                    null,
-                    """
-                    ✅ Prenotazione effettuata
-                    ───────────────────────────
-                    Numero prenotazione: """ + idGenerato + """
-    
-                    Posto assegnato: """ + posto + """
-                    """,
-                    "Conferma",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+         JOptionPane.showMessageDialog(
+                null,
+                """
+                ✅ Prenotazione effettuata
+                ───────────────────────────
+                Numero prenotazione: """ + idGenerato + """
+
+                Posto assegnato: """ + posto + """
+                """,
+                "Conferma",
+                JOptionPane.INFORMATION_MESSAGE
+          );
 
             return true;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(
+        } catch (org.postgresql.util.PSQLException e) {
+            String msg = e.getMessage();
+
+          if (msg.contains("Prenotazione bloccata")) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    """
+                    ❌ Prenotazione NON effettuata
+                    ──────────────────────────────
+                    Il volo selezionato non è disponibile:
+                    """ + msg + """
+                    """,
+                    "Volo non prenotabile",
+                    JOptionPane.WARNING_MESSAGE
+              );
+            } else {
+             JOptionPane.showMessageDialog(
                     null,
                     """
                     ❌ Errore
@@ -171,8 +186,25 @@ public class Controller {
                     """,
                     "Errore prenotazione",
                     JOptionPane.ERROR_MESSAGE
-            );
+             );
+            }
+
             return false;
+
+      } catch (SQLException e) {
+         e.printStackTrace();
+         JOptionPane.showMessageDialog(
+                null,
+                """
+                ❌ Errore
+                ──────────────
+                Si è verificato un problema durante la prenotazione.
+                Riprova o contatta l’assistenza.
+                """,
+                "Errore prenotazione",
+                JOptionPane.ERROR_MESSAGE
+          );
+         return false;
         }
     }
     public static boolean verificaLogin(String email, String password) throws SQLException {
@@ -183,8 +215,6 @@ public class Controller {
         UtenteDAO dao = new UtenteImplementazionePostgresDAO();
         return dao.isAdmin(email);
     }
-
-
 
     public static boolean apriModifica(int numeroVolo) {
         try {
@@ -213,6 +243,7 @@ public class Controller {
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             });
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -233,7 +264,6 @@ public class Controller {
 
     public static boolean apriModificaPrenotazione(int idPren) {
         try {
-            Connection conn = ConnessioneDatabase.getInstance().connection;
             VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
             Prenotazione pren = dao.cercaPerIdPrenotazionePrenotazione(idPren);
 

@@ -24,10 +24,9 @@ public class V_DESTINAZIONE {
 
     {
         indietroButton.addActionListener(e -> {
-
             SwingUtilities.getWindowAncestor(indietroButton).dispose();
-
             Controller.apriAmministratore();
+
         });
 
         aggiungiButton.addActionListener(e -> {

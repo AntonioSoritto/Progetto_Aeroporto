@@ -1,7 +1,9 @@
 package GUI;
 
 import controller.Controller;
+import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
 import model.Gate;
+import model.Prenotazione;
 import model.Volo;
 import model.VoloOrigine;
 
@@ -17,13 +19,14 @@ public class UTENTE {
     private JPanel Panel1;
     private JButton cercaButton;
     private JButton logoutButton;
+    private JTextField IDPrenotazioneTextField;
+    private JButton CercaID;
 
 
     public UTENTE() {
         logoutButton.addActionListener(e -> {
 
             SwingUtilities.getWindowAncestor(logoutButton).dispose();
-
             Controller.apriHome();
         });
 
@@ -129,8 +132,8 @@ public class UTENTE {
                             .append(" da ").append(v.getA_Volo_Origine())
                             .append(" a ").append(v.getA_Volo_Destinazione())
                             .append(" il ").append(v.getData_Volo())
-                            .append(" alle ").append(v.getOra_Volo_Prevista());
-
+                            .append(" alle ").append(v.getOra_Volo_Prevista())
+                            .append(" Stato del volo: ").append(v.getStato());
 
                     if (v instanceof VoloOrigine) {
                         Gate g = ((VoloOrigine) v).getImbarco();
@@ -144,7 +147,76 @@ public class UTENTE {
             }
         });
 
+        CercaID.addActionListener(e -> {
+            String valore = IDPrenotazioneTextField.getText().trim();
 
+            if (valore.isEmpty()) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "⚠️ Inserisci un ID prenotazione valido.",
+                        "Attenzione",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            try {
+                int id = Integer.parseInt(valore);
+                VoloImplementazionePostgresDAO volo = new VoloImplementazionePostgresDAO();
+                Prenotazione p = volo.cercaPerIdPrenotazionePrenotazione(id);
+
+                if (p == null) {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "❌ Nessuna prenotazione trovata con ID " + id,
+                            "Prenotazione non trovata",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                } else {
+
+                    String msg = """
+                📦 Prenotazione trovata!
+                ─────────────────────────────
+                • Numero prenotazione: %d
+                • ID volo: %d
+                • Documento passeggero: %s
+                • Stato: %s
+                • Posto: %s
+                • Bagagli: %d
+                """.formatted(
+                            p.getNumero(),
+                            p.getIdVolo(),
+                            p.getIdDocumento(),
+                            p.getStato(),
+                            p.getPosto(),
+                            p.getNumeroBagagli()
+                    );
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            msg,
+                            "Dettagli Prenotazione",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "❌ L'ID deve essere un numero intero.",
+                        "Errore di input",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(
+                        null,
+                        "❌ Errore nella connessione al database.\nRiprova più tardi.",
+                        "Errore SQL",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+        });
     }
 
 

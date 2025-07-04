@@ -103,7 +103,7 @@ public class MODIFICA {
             volo.setOra_Volo_Prevista(nuovoOrario);
             volo.setData_Volo(nuovaData);
             if (volo instanceof VoloOrigine vo) {
-                vo.setImbarco(new Gate(numeroGate)); // imposta il nuovo gate!
+                vo.setImbarco(new Gate(numeroGate));
             }
             try {
                 new UtenteImplementazionePostgresDAO().aggiornaVolo(volo);
