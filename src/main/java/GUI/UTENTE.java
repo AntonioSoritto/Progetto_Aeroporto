@@ -6,7 +6,6 @@ import model.Gate;
 import model.Prenotazione;
 import model.Volo;
 import model.VoloOrigine;
-
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;

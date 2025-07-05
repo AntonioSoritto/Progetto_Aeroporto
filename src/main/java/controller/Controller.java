@@ -7,9 +7,7 @@ import GUI.*;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
 import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
 import model.*;
-import Util.ConnessioneDatabase;
 import javax.swing.*;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -309,16 +307,13 @@ public class Controller {
     }
 
     public static void aggiornaStatoPrenotazione(int idPren, String nuovoStato) throws SQLException {
-        Connection conn = ConnessioneDatabase.getInstance().connection;
         VoloImplementazionePostgresDAO dao = new VoloImplementazionePostgresDAO();
         dao.aggiornaStatoPrenotazione(idPren, nuovoStato);
     }
     public static void aggiungiVoloDestinazione(VoloDestinazione volo) throws SQLException {
-        Connection conn = ConnessioneDatabase.getInstance().connection;
         new VoloImplementazionePostgresDAO().inserisciVoloDestinazione(volo);
     }
     public static void aggiungiVoloOrigine(VoloOrigine volo) throws SQLException {
-        Connection conn = ConnessioneDatabase.getInstance().connection;
         new VoloImplementazionePostgresDAO().inserisciVoloOrigine(volo);
     }
 
