@@ -21,7 +21,6 @@ public class UTENTE {
     private JTextField IDPrenotazioneTextField;
     private JButton CercaID;
 
-
     public UTENTE() {
         logoutButton.addActionListener(e -> {
 
