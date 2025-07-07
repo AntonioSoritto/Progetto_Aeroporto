@@ -5,11 +5,23 @@ import util.ConnessioneDatabase;
 import model.*;
 import java.sql.*;
 import java.util.Random;
+/**
+ * Implementazione dell'interfaccia {@link UtenteDAO} per la gestione degli utenti e delle operazioni correlate
+ * su database PostgreSQL.
+ * Si occupa della registrazione e autenticazione utenti, gestione di passeggeri e prenotazioni, aggiornamento voli.
+ */
 
 public class UtenteImplementazionePostgresDAO implements UtenteDAO {
+    /** Gestore della connessione al database. */
+
     private Connection connection;
+    /** Generatore casuale per numeri di prenotazione e posti. */
+
     Random random = new Random();
 
+    /**
+     * Costruttore. Inizializza la connessione al database usando la singleton {@link ConnessioneDatabase}.
+     */
 
     public UtenteImplementazionePostgresDAO() {
         try {
@@ -18,6 +30,13 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             e.printStackTrace();
         }
     }
+    /**
+     * Verifica l'esistenza di un passeggero tramite ID documento.
+     *
+     * @param idDoc identificativo univoco del documento
+     * @return true se il passeggero esiste
+     * @throws SQLException in caso di errori SQL
+     */
 
     public boolean passeggeroEsiste(String idDoc) throws SQLException {
         String sql = "SELECT 1 FROM \"Passeggero\" WHERE \"idDocumento\" = ?";
@@ -26,6 +45,14 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             return ps.executeQuery().next();
         }
     }
+    /**
+     * Registra un nuovo passeggero nel database.
+     *
+     * @param nome nome del passeggero
+     * @param cognome cognome del passeggero
+     * @param idDoc identificativo documento
+     * @throws SQLException in caso di errori SQL
+     */
 
     public void creaPasseggero(String nome, String cognome, String idDoc) throws SQLException {
         String sql = "INSERT INTO \"Passeggero\" (\"Nome\", \"Cognome\", \"idDocumento\") VALUES (?, ?, ?)";
@@ -36,6 +63,14 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             ps.executeUpdate();
         }
     }
+    /**
+     * Controlla se esiste una prenotazione per un certo documento e volo.
+     *
+     * @param idDoc documento passeggero
+     * @param idVolo id del volo
+     * @return true se la prenotazione esiste
+     * @throws SQLException in caso di errori SQL
+     */
 
     public boolean prenotazioneEsistente(String idDoc, int idVolo) throws SQLException {
         String sql = "SELECT 1 FROM \"Prenotazioni\" WHERE \"idDocumento\" = ? AND \"IdVolo\" = ?";
@@ -45,6 +80,13 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             return ps.executeQuery().next();
         }
     }
+    /**
+     * Genera un posto libero e non ancora assegnato per un dato volo.
+     *
+     * @param idVolo identificativo del volo
+     * @return stringa che rappresenta il posto (lettera + numero)
+     * @throws SQLException in caso di errori SQL
+     */
 
     public String generaPostoLibero(int idVolo) throws SQLException {
         String posto;
@@ -66,6 +108,17 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
 
         return posto;
     }
+    /**
+     * Crea una nuova prenotazione per un passeggero.
+     *
+     * @param numero numero prenotazione
+     * @param idVolo id del volo
+     * @param idDoc documento del passeggero
+     * @param bagagli numero bagagli associati
+     * @param posto posto assegnato
+     * @return numero di prenotazione generato
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public int creaPrenotazione(int numero, int idVolo, String idDoc, int bagagli, String posto) throws SQLException {
@@ -98,6 +151,13 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             }
         }
     }
+    /**
+     * Genera un numero di prenotazione univoco (assente nel database).
+     *
+     * @return numero di prenotazione non già assegnato
+     * @throws SQLException in caso di errori SQL
+     */
+
     @Override
     public int generaNumeroPrenotazioneUnico() throws SQLException {
         int numero;
@@ -116,6 +176,15 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
 
         return numero;
     }
+    /**
+     * Verifica la correttezza delle credenziali di login di un utente.
+     *
+     * @param login nome utente
+     * @param password password
+     * @return true se le credenziali sono corrette
+     * @throws SQLException in caso di errori SQL
+     */
+
     @Override
     public boolean loginValido(String login, String password) throws SQLException {
         String sql = "SELECT 1 FROM \"Utente\" WHERE \"Login\" = ? AND \"Password\" = ?";
@@ -125,6 +194,13 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             return ps.executeQuery().next();
         }
     }
+    /**
+     * Restituisce true se l'utente associato al login ha privilegi da amministratore.
+     *
+     * @param login nome utente
+     * @return true se amministratore
+     * @throws SQLException in caso di errori SQL o login errato
+     */
 
     @Override
     public boolean isAdmin(String login) throws SQLException {
@@ -144,6 +220,12 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
         }
     }
 
+    /**
+     * Aggiorna i dati di un volo nel database.
+     *
+     * @param volo il volo da aggiornare (può essere {@link VoloOrigine} o {@link VoloDestinazione})
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public void aggiornaVolo(Volo volo) throws SQLException {
@@ -191,6 +273,12 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
             throw new IllegalArgumentException("Tipo di volo sconosciuto: " + volo.getClass().getSimpleName());
         }
     }
+    /**
+     * Inserisce un nuovo utente nel database.
+     *
+     * @param u utente da inserire
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public void inserisciUtente(Utente u) throws SQLException {

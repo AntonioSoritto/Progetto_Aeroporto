@@ -9,18 +9,46 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+/**
+ * Finestra grafica per l'inserimento e la gestione di un nuovo volo in partenza dall'aeroporto.
+ * Consente la compilazione e la registrazione di tutte le informazioni relative al volo di origine.
+ */
 
 public class VoloOrig {
+    /** Campo di testo per l'inserimento dell'ID del volo. */
+
     private JTextField textField1;
+    /** Campo di testo per la compagnia aerea del volo. */
+
     private JTextField compagniaTextField;
+    /** Campo di testo per il numero del gate di imbarco. */
+
     private JTextField gateTextField;
+    /** Campo di testo per l'inserimento dell'aeroporto di destinazione. */
+
     private JTextField aeroportoDOrigineTextField;
+    /** ComboBox per la selezione della data del volo. */
+
     private JComboBox <String> comboBox1;
+    /** Bottone che consente di aggiungere il nuovo volo. */
+
     private JButton aggiungiButton;
+    /** ComboBox per la selezione dello stato attuale del volo. */
+
     private JComboBox <String> comboBox5;
+    /** Pannello principale dell'interfaccia grafica. */
+
     private JPanel panel1;
+    /** Bottone che consente di tornare alla schermata amministratore. */
+
     private JButton indietroButton;
+    /** Campo di testo per l'inserimento dell'orario previsto di partenza del volo. */
+
     private JTextField oraTextField;
+    /**
+     * Costruttore della finestra di aggiunta di un volo di origine (in partenza).
+     * Definisce i listener per la gestione degli eventi sui pulsanti e l'invio dei dati.
+     */
 
     public VoloOrig() {
         indietroButton.addActionListener(e -> {
@@ -81,6 +109,11 @@ public class VoloOrig {
             }
         });
     }
+    /**
+     * Restituisce il pannello principale della schermata di inserimento volo.
+     *
+     * @return il pannello grafico principale
+     */
 
     public JPanel getPanel() {
         return panel1;

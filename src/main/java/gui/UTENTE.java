@@ -10,18 +10,46 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Finestra grafica principale riservata all'utente, che permette di gestire e cercare prenotazioni e voli.
+ * Offre funzionalità di logout, ricerca tramite criteri vari e consultazione dettagli prenotazione.
+ */
 
 public class UTENTE {
+    /** Bottone per accedere alla schermata di prenotazione di un nuovo volo. */
+
     private JButton effettuaPrenotazioneButton;
+    /** ComboBox per la scelta del criterio di ricerca (numero volo, nome, ID prenotazione). */
+
     private JComboBox <String> comboBox1;
+    /** Campo di testo dove l'utente inserisce il valore da cercare in base al criterio selezionato. */
+
     private JTextField textField1;
+    /** Pannello principale che contiene tutti i componenti grafici dell'interfaccia. */
+
     private JPanel panel1;
+    /** Bottone per eseguire la ricerca dei voli/prenotazioni secondo il criterio selezionato. */
+
     private JButton cercaButton;
+    /** Bottone per effettuare il logout e tornare alla schermata iniziale. */
+
     private JButton logoutButton;
+    /** Campo di testo per l'inserimento diretto dell'ID di una prenotazione da cercare. */
+
     private JTextField iDPrenotazioneTextField;
+    /** Bottone per cercare una prenotazione tramite ID. */
+
     private JButton cercaID;
+    /** Titolo utilizzato per i messaggi di attenzione. */
+
     private String a= "Attenzione";
+    /** Titolo utilizzato per i messaggi di errore. */
+
     private String errore ="Errore";
+    /**
+     * Costruttore della schermata utente.
+     * Inizializza i listener per i vari bottoni e gestisce l'interazione con l'interfaccia grafica per la ricerca e visualizzazione di voli e prenotazioni.
+     */
 
     public UTENTE() {
         logoutButton.addActionListener(e -> {
@@ -221,6 +249,11 @@ public class UTENTE {
         });
     }
 
+    /**
+     * Restituisce il pannello principale della schermata utente.
+     *
+     * @return il pannello grafico principale
+     */
 
     public JPanel getPanel() {
         return panel1;

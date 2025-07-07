@@ -9,10 +9,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Implementazione dell'interfaccia {@link VoloDAO} per la gestione delle operazioni di accesso persistent data
+ * sui voli, utilizzando un database PostgreSQL.
+ * Fornisce metodi per ricerca, inserimento e aggiornamento di voli e prenotazioni.
+ */
 
 public class VoloImplementazionePostgresDAO implements VoloDAO {
+    /** Connessione al database. */
 
     private Connection connection;
+    /**
+     * Costruttore. Inizializza la connessione al database tramite {@link ConnessioneDatabase}.
+     */
 
     public VoloImplementazionePostgresDAO() {
         try {
@@ -21,6 +30,12 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             e.printStackTrace();
         }
     }
+    /**
+     * Ricerca tutti i voli che corrispondono a un certo numero di volo.
+     *
+     * @param numero numero del volo da cercare
+     * @return lista dei voli trovati
+     */
 
     @Override
     public List<Volo> cercaPerNumeroVolo(int numero) {
@@ -56,6 +71,14 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
     }
 
 
+    /**
+     * Cerca voli associati all'intestatario tramite nome e cognome.
+     *
+     * @param nome nome intestatario
+     * @param cognome cognome intestatario
+     * @return lista di voli collegati all'intestatario
+     * @throws SQLException in caso di problemi SQL
+     */
 
     @Override
     public List<Volo> cercaPerNomeIntestatario(String nome, String cognome)
@@ -100,6 +123,13 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             return risultati;
         }
     }
+    /**
+     * Ricava una prenotazione tramite ID.
+     *
+     * @param idPren id della prenotazione
+     * @return prenotazione corrispondente all'id
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public Prenotazione cercaPerIdPrenotazionePrenotazione(int idPren) throws SQLException {
@@ -128,6 +158,12 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
 
         return null;
     }
+    /**
+     * Restituisce la lista dei voli associati a una prenotazione tramite l'ID.
+     *
+     * @param id id della prenotazione
+     * @return lista di voli collegati alla prenotazione
+     */
 
     @Override
     public List<Volo> cercaPerIdPrenotazione(int id) {
@@ -170,6 +206,13 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
 
         return voli;
     }
+    /**
+     * Cerca voli diretti verso una destinazione e una particolare data.
+     *
+     * @param destinazione destinazione del volo
+     * @param data data del volo
+     * @return lista di voli che rispondono ai criteri
+     */
 
     @Override
     public List<Volo> cercaMeta(String destinazione, LocalDate data) {
@@ -215,6 +258,13 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
 
         return voli;
     }
+    /**
+     * Aggiorna lo stato di una prenotazione.
+     *
+     * @param idPrenotazione id della prenotazione
+     * @param stato nuovo stato da impostare
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public void aggiornaStatoPrenotazione(int idPrenotazione, String stato) throws SQLException {
@@ -239,6 +289,12 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             }
         }
     }
+    /**
+     * Inserisce nel database un nuovo volo di destinazione.
+     *
+     * @param v il volo destinazione da inserire
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public void inserisciVoloDestinazione(VoloDestinazione v) throws SQLException {
@@ -261,6 +317,12 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             ps.executeUpdate();
         }
     }
+    /**
+     * Inserisce nel database un nuovo volo d'origine.
+     *
+     * @param v il volo origine da inserire
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public void inserisciVoloOrigine(VoloOrigine v) throws SQLException {
@@ -284,6 +346,13 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             ps.executeUpdate();
         }
     }
+    /**
+     * Ricava un oggetto {@link Volo} a partire da un {@link ResultSet}.
+     *
+     * @param rs il result set da cui estrarre i dati
+     * @return il volo generato
+     * @throws SQLException in caso di errori SQL
+     */
 
     @Override
     public Volo creaVoloDaResultSet(ResultSet rs) throws SQLException {

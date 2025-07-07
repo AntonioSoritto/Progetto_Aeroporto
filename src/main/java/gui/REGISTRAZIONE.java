@@ -4,13 +4,31 @@ import controller.Controller;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
 import model.Utente;
 import javax.swing.*;
+/**
+ * Finestra grafica per la registrazione di un nuovo utente.
+ * Consente l'inserimento di login e password, la validazione dei dati e la creazione dell'account.
+ */
 
 public class REGISTRAZIONE {
+    /** Pannello principale che contiene tutti i componenti dell'interfaccia grafica di registrazione. */
+
     private JPanel panel1;
+    /** Campo di testo per l'inserimento del login dell'utente. */
+
     private JTextField textField1;
+    /** Campo di testo per l'inserimento della password dell'utente. */
+
     private JPasswordField passwordField1;
+    /** Bottone per confermare la registrazione del nuovo utente. */
+
     private JButton registratiButton;
+    /** Bottone per tornare alla schermata di login principale. */
+
     private JButton loginButton;
+    /**
+     * Costruttore della finestra di registrazione.
+     * Inizializza i listener per i bottoni di registrazione e login, e gestisce la validazione dei dati inseriti.
+     */
 
     public REGISTRAZIONE() {
         loginButton.addActionListener(e -> {
@@ -64,6 +82,11 @@ public class REGISTRAZIONE {
         });
 
     }
+    /**
+     * Restituisce il pannello principale della finestra di registrazione.
+     *
+     * @return il pannello grafico principale
+     */
 
     public JPanel getPanel() {
         return panel1;
