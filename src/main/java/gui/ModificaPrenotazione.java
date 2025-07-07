@@ -1,11 +1,11 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import model.Prenotazione;
 import javax.swing.*;
 import java.awt.*;
 
-public class MOD_P {
+public class ModificaPrenotazione {
 
     private JButton confermaButton;
     private Prenotazione prenotazione;
@@ -13,12 +13,11 @@ public class MOD_P {
     private JButton indietroButton;
     private JPanel panel1;
 
-    public MOD_P() {
+    public ModificaPrenotazione() {
         confermaButton.addActionListener(e -> {
             try {
                 String nuovoStato = comboBox1.getSelectedItem().toString();
-                Controller controller=new Controller();
-                controller.aggiornaStatoPrenotazione(prenotazione.getNumero(), nuovoStato);
+                Controller.aggiornaStatoPrenotazione(prenotazione.getNumero(), nuovoStato);
 
                 JOptionPane.showMessageDialog(
                         panel1,

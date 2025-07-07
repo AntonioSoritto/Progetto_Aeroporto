@@ -1,9 +1,9 @@
 package controller;
 
 
-import DAO.UtenteDAO;
-import DAO.VoloDAO;
-import GUI.*;
+import dao.UtenteDAO;
+import dao.VoloDAO;
+import gui.*;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
 import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
 import model.*;
@@ -85,7 +85,7 @@ public class Controller {
             return;
         }
 
-        EFFETTUA_P effettuaP = new EFFETTUA_P(destinazione, data);
+        EffettuaPrenotazione effettuaP = new EffettuaPrenotazione(destinazione, data);
         JFrame frame = new JFrame("Dati Passeggero");
         frame.setContentPane(effettuaP.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -276,7 +276,7 @@ public class Controller {
             }
 
             SwingUtilities.invokeLater(() -> {
-                MOD_P gui = new MOD_P();
+                ModificaPrenotazione gui = new ModificaPrenotazione();
                 gui.setPrenotazione(pren);
 
                 JFrame f = new JFrame("Modifica Prenotazione");

@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import model.StatoVolo;
@@ -43,10 +43,10 @@ public class V_DESTINAZIONE {
                 VoloDestinazione volo = new VoloDestinazione();
                 volo.setIdVolo(idVolo);
                 volo.setCompagnia(compagnia);
-                volo.setA_Volo_Origine(origine);
-                volo.setA_Volo_Destinazione("Napoli");  // fisso
-                volo.setData_Volo(data);
-                volo.setOra_Volo_Prevista(ora1);
+                volo.setaVoloOrigine(origine);
+                volo.setaVoloDestinazione("Napoli");  // fisso
+                volo.setDataVolo(data);
+                volo.setOraVoloPrevista(ora1);
                 volo.setStato(stato);
                 volo.setRitardo(null);
 

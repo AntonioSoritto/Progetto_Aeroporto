@@ -1,7 +1,8 @@
 package model;
 
 public class Utente {
-    private String login, password;
+    private String login;
+    private String password;
     private boolean isAdmin;
 
     public Utente(String login, String password) {

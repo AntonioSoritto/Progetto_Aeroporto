@@ -1,19 +1,18 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import javax.swing.*;
 
 public class HOME {
     private JTextField textField1;
-    private JLabel Messaggio;
+    private JLabel messaggio;
     private JPasswordField passwordField1;
-    private JButton VOLAButton;
+    private JButton volaButton;
     private JPanel panel;
     private JButton indietroButton;
 
     public HOME() {
-        VOLAButton.addActionListener(e -> {
-            Controller controller = new Controller();
+        volaButton.addActionListener(e -> {
             String email = textField1.getText();
             String password = new String(passwordField1.getPassword());
 
@@ -41,7 +40,7 @@ public class HOME {
                     Controller.apriUtente();
                 }
 
-                SwingUtilities.getWindowAncestor(VOLAButton).dispose();
+                SwingUtilities.getWindowAncestor(volaButton).dispose();
 
             } catch (Exception ex) {
                 ex.printStackTrace();

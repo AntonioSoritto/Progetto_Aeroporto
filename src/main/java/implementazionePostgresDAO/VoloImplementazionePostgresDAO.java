@@ -1,8 +1,8 @@
 package implementazionePostgresDAO;
 
-import DAO.VoloDAO;
+import dao.VoloDAO;
 import model.StatoVolo;
-import Util.ConnessioneDatabase;
+import util.ConnessioneDatabase;
 import model.*;
 import java.sql.*;
 import java.time.LocalDate;
@@ -252,10 +252,10 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, v.getIdVolo());
             ps.setString(2, v.getCompagnia());
-            ps.setString(3, v.getA_Volo_Origine());
+            ps.setString(3, v.getaVoloOrigine());
             ps.setString(4, "Napoli");
-            ps.setDate(5, Date.valueOf(v.getData_Volo()));
-            ps.setTime(6, Time.valueOf(v.getOra_Volo_Prevista()));
+            ps.setDate(5, Date.valueOf(v.getDataVolo()));
+            ps.setTime(6, Time.valueOf(v.getOraVoloPrevista()));
             ps.setTime(7, Time.valueOf("00:00:00"));
             ps.setString(8, v.getStato().name());
             ps.executeUpdate();
@@ -275,12 +275,12 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             ps.setInt(1, v.getIdVolo());
             ps.setString(2, v.getCompagnia());
             ps.setString(3, "Napoli");  // Fisso perché è in partenza da Napoli
-            ps.setString(4, v.getA_Volo_Destinazione());
-            ps.setDate(5, Date.valueOf(v.getData_Volo()));
-            ps.setTime(6, Time.valueOf(v.getOra_Volo_Prevista()));
+            ps.setString(4, v.getaVoloDestinazione());
+            ps.setDate(5, Date.valueOf(v.getDataVolo()));
+            ps.setTime(6, Time.valueOf(v.getOraVoloPrevista()));
             ps.setTime(7, Time.valueOf("00:00:00")); // Ritardo iniziale
             ps.setString(8, v.getStato().name());
-            ps.setInt(9, v.getImbarco().getIdGate());
+            ps.setInt(9, v.getImbarco().getidGate());
             ps.executeUpdate();
         }
     }
@@ -315,10 +315,10 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             VoloOrigine vo = new VoloOrigine();
             vo.setIdVolo(idVolo);
             vo.setCompagnia(compagnia);
-            vo.setA_Volo_Origine(origine);
-            vo.setA_Volo_Destinazione(destinazione);
-            vo.setData_Volo(data);
-            vo.setOra_Volo_Prevista(ora);
+            vo.setaVoloOrigine(origine);
+            vo.setaVoloDestinazione(destinazione);
+            vo.setDataVolo(data);
+            vo.setOraVoloPrevista(ora);
             vo.setRitardo(ritardo);
             vo.setStato(stato);
             vo.setImbarco(gate);
@@ -327,10 +327,10 @@ public class VoloImplementazionePostgresDAO implements VoloDAO {
             VoloDestinazione vd = new VoloDestinazione();
             vd.setIdVolo(idVolo);
             vd.setCompagnia(compagnia);
-            vd.setA_Volo_Origine(origine);
-            vd.setA_Volo_Destinazione(destinazione);
-            vd.setData_Volo(data);
-            vd.setOra_Volo_Prevista(ora);
+            vd.setaVoloOrigine(origine);
+            vd.setaVoloDestinazione(destinazione);
+            vd.setDataVolo(data);
+            vd.setOraVoloPrevista(ora);
             vd.setRitardo(ritardo);
             vd.setStato(stato);
             return vd;

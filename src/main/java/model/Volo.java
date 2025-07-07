@@ -5,16 +5,16 @@ import java.time.LocalTime;
 
 public class Volo {
     private int idVolo;
-    private String Compagnia;
-    private String A_Volo_Destinazione;
-    private String A_Volo_Origine;
-    private LocalDate Data_Volo;
-    private LocalTime Ora_Volo_Prevista;
-    private LocalTime Ritardo;
+    private String compagnia;
+    private String aVoloDestinazione;
+    private String aVoloOrigine;
+    private LocalDate dataVolo;
+    private LocalTime oraVoloPrevista;
+    private LocalTime ritardo;
     private StatoVolo stato;
 
     public Volo() {
-
+        //costruttore
     }
 
     public void setIdVolo(int idVolo) {
@@ -25,52 +25,52 @@ public class Volo {
         return idVolo;
     }
 
-    public void setA_Volo_Origine(String A_Volo_Origine) {
-        this.A_Volo_Origine = A_Volo_Origine;
+    public void setaVoloOrigine(String aVoloOrigine) {
+        this.aVoloOrigine = aVoloOrigine;
     }
 
-    public String getA_Volo_Origine() {
-        return A_Volo_Origine;
+    public String getaVoloOrigine() {
+        return aVoloOrigine;
     }
 
-    public void setA_Volo_Destinazione(String A_Volo_Destinazione) {
-        this.A_Volo_Destinazione = A_Volo_Destinazione;
+    public void setaVoloDestinazione(String aVoloDestinazione) {
+        this.aVoloDestinazione = aVoloDestinazione;
     }
 
-    public String getA_Volo_Destinazione() {
-        return A_Volo_Destinazione;
+    public String getaVoloDestinazione() {
+        return aVoloDestinazione;
     }
 
-    public void setCompagnia(String Compagnia) {
-        this.Compagnia = Compagnia;
+    public void setCompagnia(String compagnia) {
+        this.compagnia = compagnia;
     }
 
     public String getCompagnia() {
-        return Compagnia;
+        return compagnia;
     }
 
-    public void setData_Volo(LocalDate Data_Volo) {
-        this.Data_Volo = Data_Volo;
+    public void setDataVolo(LocalDate dataVolo) {
+        this.dataVolo = dataVolo;
     }
 
-    public LocalDate getData_Volo() {
-        return Data_Volo;
+    public LocalDate getDataVolo() {
+        return dataVolo;
     }
 
-    public void setOra_Volo_Prevista(LocalTime Ora_Volo_Prevista) {
-        this.Ora_Volo_Prevista = Ora_Volo_Prevista;
+    public void setOraVoloPrevista(LocalTime oraVoloPrevista) {
+        this.oraVoloPrevista = oraVoloPrevista;
     }
 
-    public LocalTime getOra_Volo_Prevista() {
-        return Ora_Volo_Prevista;
+    public LocalTime getOraVoloPrevista() {
+        return oraVoloPrevista;
     }
 
-    public void setRitardo(LocalTime Ritardo) {
-        this.Ritardo = Ritardo;
+    public void setRitardo(LocalTime ritardo) {
+        this.ritardo = ritardo;
     }
 
     public LocalTime getRitardo() {
-        return Ritardo;
+        return ritardo;
     }
 
     public void setStato(StatoVolo stato) {

@@ -1,8 +1,7 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
-import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
 import model.Gate;
 import model.Volo;
 import model.StatoVolo;
@@ -34,15 +33,15 @@ public class MODIFICA {
             comboBox5.setSelectedItem(volo.getStato());
         }
 
-        if (volo.getOra_Volo_Prevista() != null) {
+        if (volo.getOraVoloPrevista() != null) {
             Text1.getText();
         }
 
-        if (volo.getData_Volo() != null) {
-            comboBox2.setSelectedItem(volo.getData_Volo().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        if (volo.getDataVolo() != null) {
+            comboBox2.setSelectedItem(volo.getDataVolo().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
-        if (volo.getA_Volo_Origine() != null && volo.getA_Volo_Destinazione() != null) {
-            tratta.setText(volo.getA_Volo_Origine().toUpperCase() + " ➜ " + volo.getA_Volo_Destinazione().toUpperCase());
+        if (volo.getaVoloOrigine() != null && volo.getaVoloDestinazione() != null) {
+            tratta.setText(volo.getaVoloOrigine().toUpperCase() + " ➜ " + volo.getaVoloDestinazione().toUpperCase());
         }
 
         indietroButton.addActionListener(e -> {
@@ -100,8 +99,8 @@ public class MODIFICA {
              LocalDate nuovaData = LocalDate.parse(dataSelezionata, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
             volo.setStato(nuovoStato);
-            volo.setOra_Volo_Prevista(nuovoOrario);
-            volo.setData_Volo(nuovaData);
+            volo.setOraVoloPrevista(nuovoOrario);
+            volo.setDataVolo(nuovaData);
             if (volo instanceof VoloOrigine vo) {
                 vo.setImbarco(new Gate(numeroGate));
             }

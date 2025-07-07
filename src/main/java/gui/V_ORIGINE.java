@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import model.Gate;
@@ -6,7 +6,6 @@ import model.StatoVolo;
 import model.VoloOrigine;
 
 import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -45,13 +44,13 @@ public class V_ORIGINE {
                 VoloOrigine volo = new VoloOrigine();
                 volo.setIdVolo(idVolo);
                 volo.setCompagnia(compagnia);
-                volo.setA_Volo_Origine("Napoli");
-                volo.setA_Volo_Destinazione(destinazione);
-                volo.setData_Volo(data);
-                volo.setOra_Volo_Prevista(ora);
+                volo.setaVoloOrigine("Napoli");
+                volo.setaVoloDestinazione(destinazione);
+                volo.setDataVolo(data);
+                volo.setOraVoloPrevista(ora);
                 volo.setStato(stato);
                 Gate gate = new Gate();
-                gate.setIdGate(idGate);
+                gate.setidGate(idGate);
                 volo.setImbarco(gate);
                 Controller.aggiungiVoloOrigine(volo);
 

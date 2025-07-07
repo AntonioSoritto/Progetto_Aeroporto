@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import implementazionePostgresDAO.VoloImplementazionePostgresDAO;
@@ -127,15 +127,15 @@ public class UTENTE {
                 StringBuilder sb = new StringBuilder("Risultati:\n");
                 for (Volo v : risultati) {
                     sb.append("Volo ").append(v.getIdVolo())
-                            .append(" da ").append(v.getA_Volo_Origine())
-                            .append(" a ").append(v.getA_Volo_Destinazione())
-                            .append(" il ").append(v.getData_Volo())
-                            .append(" alle ").append(v.getOra_Volo_Prevista())
+                            .append(" da ").append(v.getaVoloOrigine())
+                            .append(" a ").append(v.getaVoloDestinazione())
+                            .append(" il ").append(v.getDataVolo())
+                            .append(" alle ").append(v.getOraVoloPrevista())
                             .append(" Stato del volo: ").append(v.getStato());
 
                     if (v instanceof VoloOrigine) {
                         Gate g = ((VoloOrigine) v).getImbarco();
-                        int gate = g.getIdGate();
+                        int gate = g.getidGate();
                         sb.append(" — Gate di partenza: ").append(gate);
                     }
 

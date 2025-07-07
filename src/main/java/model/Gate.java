@@ -1,18 +1,18 @@
 package model;
 
 public class Gate {
-    private int IdGate;
+    private int idGate;
 
-    public Gate(int IdGate) {
-        this.IdGate = IdGate;
+    public Gate(int idGate) {
+        this.idGate = idGate;
     }
     public Gate(){}
 
-    public void setIdGate(int IdGate) {
-        this.IdGate = IdGate;
+    public void setidGate(int idGate) {
+        this.idGate = idGate;
     }
-    public int getIdGate() {
-        return IdGate;
+    public int getidGate() {
+        return idGate;
     }
 
 }

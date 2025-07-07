@@ -1,3 +1,5 @@
+package util;
+
 import controller.Controller;
 
 import javax.swing.*;

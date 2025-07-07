@@ -1,14 +1,14 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import javax.swing.*;
 
 
 public class AMMINISTRATORE {
-    private JLabel MessaggioA;
+    private JLabel messaggioA; //Questa label è utilizzata esclusivamente per dare il benvenuto all'utente
     private JButton partenzaButton;
     private JButton arrivoButton;
-    private JPanel PANEL1;
+    private JPanel panel1;
     private JComboBox comboBox1;
     private JTextField textField1;
     private JButton cercaButton;
@@ -111,6 +111,6 @@ public class AMMINISTRATORE {
     }
 
     public JPanel getPanel() {
-        return PANEL1;
+        return panel1;
     }
 }

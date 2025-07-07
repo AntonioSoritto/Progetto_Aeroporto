@@ -1,7 +1,7 @@
 package implementazionePostgresDAO;
 
-import DAO.UtenteDAO;
-import Util.ConnessioneDatabase;
+import dao.UtenteDAO;
+import util.ConnessioneDatabase;
 import model.*;
 import java.sql.*;
 import java.util.Random;
@@ -166,8 +166,8 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
                                             Verifica che un gate valido sia stato assegnato prima del salvataggio.
                                             """);                }
 
-                ps1.setInt(1, gate.getIdGate());
-                ps1.setDate(2, Date.valueOf(volo.getData_Volo()));
+                ps1.setInt(1, gate.getidGate());
+                ps1.setDate(2, Date.valueOf(volo.getDataVolo()));
                 ps1.setTime(3, Time.valueOf(volo.getRitardo()));
                 ps1.setString(4, volo.getStato().name());
                 ps1.setInt(5, volo.getIdVolo());
@@ -181,7 +181,7 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
         """;
 
             try (PreparedStatement ps2 = connection.prepareStatement(sqlDestinazione)) {
-                ps2.setDate(1, Date.valueOf(volo.getData_Volo()));
+                ps2.setDate(1, Date.valueOf(volo.getDataVolo()));
                 ps2.setTime(2, Time.valueOf(volo.getRitardo()));
                 ps2.setString(3, volo.getStato().name());
                 ps2.setInt(4, volo.getIdVolo());

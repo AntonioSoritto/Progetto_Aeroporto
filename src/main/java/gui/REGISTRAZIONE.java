@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import controller.Controller;
 import implementazionePostgresDAO.UtenteImplementazionePostgresDAO;
@@ -69,6 +69,7 @@ public class REGISTRAZIONE {
         return panel1;
     }
 
-    private void createUIComponents() {
-    }
+//    private void createUIComponents() {
+//        //
+//    }
 }
