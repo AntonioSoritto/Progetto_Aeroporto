@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class UtenteImplementazionePostgresDAO implements UtenteDAO {
     private Connection connection;
+    Random random = new Random();
+
 
     public UtenteImplementazionePostgresDAO() {
         try {
@@ -45,7 +47,6 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
     }
 
     public String generaPostoLibero(int idVolo) throws SQLException {
-        Random random = new Random();
         String posto;
         boolean occupato;
 
@@ -99,7 +100,6 @@ public class UtenteImplementazionePostgresDAO implements UtenteDAO {
     }
     @Override
     public int generaNumeroPrenotazioneUnico() throws SQLException {
-        Random random = new Random();
         int numero;
         boolean esiste;
 

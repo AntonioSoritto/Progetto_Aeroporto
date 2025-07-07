@@ -10,11 +10,11 @@ public class REGISTRAZIONE {
     private JTextField textField1;
     private JPasswordField passwordField1;
     private JButton registratiButton;
-    private JButton LOGINButton;
+    private JButton loginButton;
 
     public REGISTRAZIONE() {
-        LOGINButton.addActionListener(e -> {
-            SwingUtilities.getWindowAncestor(LOGINButton).dispose();
+        loginButton.addActionListener(e -> {
+            SwingUtilities.getWindowAncestor(loginButton).dispose();
             Controller.apriHome();
         });
         registratiButton.addActionListener(e -> {
@@ -23,20 +23,20 @@ public class REGISTRAZIONE {
 
             if (login.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(null, """
-                ⚠️ Attenzione
-                ──────────────
-                Inserisci sia login che password.
-                """, "Campi obbligatori", JOptionPane.WARNING_MESSAGE);
+                        ⚠️ Attenzione
+                        ──────────────
+                        Inserisci sia login che password.
+                        """, "Campi obbligatori", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             if (login.matches("\\d+")) {
                 JOptionPane.showMessageDialog(null, """
-                ⚠️ Login non valido
-                ─────────────────────
-                Il login non può essere solo numerico.
-                Inserisci almeno una lettera.
-                """, "Formato login errato", JOptionPane.WARNING_MESSAGE);
+                        ⚠️ Login non valido
+                        ─────────────────────
+                        Il login non può essere solo numerico.
+                        Inserisci almeno una lettera.
+                        """, "Formato login errato", JOptionPane.WARNING_MESSAGE);
                 return;
             }
             Utente nuovo = new Utente(login, password);
@@ -46,9 +46,9 @@ public class REGISTRAZIONE {
                 dao.inserisciUtente(nuovo);
 
                 JOptionPane.showMessageDialog(null, """
-                ✅ Registrazione completata
-                ─────────────────────────────
-                Benvenuto a bordo, """ + login + "!", "Successo", JOptionPane.INFORMATION_MESSAGE);
+                        ✅ Registrazione completata
+                        ─────────────────────────────
+                        Benvenuto a bordo, """ + login + "!", "Successo", JOptionPane.INFORMATION_MESSAGE);
 
                 SwingUtilities.getWindowAncestor(registratiButton).dispose();
                 Controller.apriHome();
@@ -56,10 +56,10 @@ public class REGISTRAZIONE {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, """
-                ❌ Errore
-                ─────────────
-                Registrazione fallita. Il login potrebbe essere già registrato.
-                """, "Errore registrazione", JOptionPane.ERROR_MESSAGE);
+                        ❌ Errore
+                        ─────────────
+                        Registrazione fallita. Il login potrebbe essere già registrato.
+                        """, "Errore registrazione", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -69,7 +69,4 @@ public class REGISTRAZIONE {
         return panel1;
     }
 
-//    private void createUIComponents() {
-//        //
-//    }
 }

@@ -9,15 +9,15 @@ public class AMMINISTRATORE {
     private JButton partenzaButton;
     private JButton arrivoButton;
     private JPanel panel1;
-    private JComboBox comboBox1;
+    private JComboBox <String> comboBox1;
     private JTextField textField1;
     private JButton cercaButton;
     private JButton logoutButton;
+    private String error= "Errore";
 
 
     public AMMINISTRATORE() {
         logoutButton.addActionListener(e -> {
-
             SwingUtilities.getWindowAncestor(logoutButton).dispose();
             Controller.apriHome();
         });
@@ -33,7 +33,6 @@ public class AMMINISTRATORE {
         cercaButton.addActionListener(e -> {
             String criterio = (String) comboBox1.getSelectedItem();
             String testo   = textField1.getText().trim();
-
             if (testo.isEmpty()) {
                 String msg = criterio.equals("Numero volo")
                         ? "Inserisci il numero del volo"
@@ -43,18 +42,15 @@ public class AMMINISTRATORE {
                 );
                 return;
             }
-
             switch (criterio) {
                 case "Numero volo":
                     try {
                         int numero = Integer.parseInt(testo);
                         boolean successo = Controller.apriModifica(numero);
-
                         if (successo) {
                             SwingUtilities.getWindowAncestor(cercaButton).dispose();
                         }
-
-                    } catch (NumberFormatException ex) {
+                    } catch (NumberFormatException _) {
                         JOptionPane.showMessageDialog(
                                 null,
                                 """
@@ -63,7 +59,7 @@ public class AMMINISTRATORE {
                                 Il numero del volo deve essere un numero intero.
                                 Inserisci un valore valido e riprova.
                                 """,
-                                "Errore",
+                                error,
                                 JOptionPane.ERROR_MESSAGE
                         );
                     }
@@ -72,12 +68,10 @@ public class AMMINISTRATORE {
                     try {
                         int idPren = Integer.parseInt(testo);
                         boolean successo = Controller.apriModificaPrenotazione(idPren);
-
                         if (successo) {
                             SwingUtilities.getWindowAncestor(cercaButton).dispose();
                         }
-
-                    } catch (NumberFormatException ex) {
+                    } catch (NumberFormatException _) {
                         JOptionPane.showMessageDialog(
                                 null,
                                 """
@@ -86,12 +80,11 @@ public class AMMINISTRATORE {
                                 L'ID della prenotazione deve essere un numero intero.
                                 Inserisci un valore corretto e riprova.
                                 """,
-                                "Errore",
+                                error,
                                 JOptionPane.ERROR_MESSAGE
                         );
                     }
                     return;
-
                 default:
                     JOptionPane.showMessageDialog(
                             null,
@@ -101,13 +94,11 @@ public class AMMINISTRATORE {
                             Criterio di ricerca non riconosciuto.
                             Verifica la selezione e riprova.
                             """,
-                            "Errore",
+                            error,
                             JOptionPane.ERROR_MESSAGE
                     );
             }
         });
-
-
     }
 
     public JPanel getPanel() {

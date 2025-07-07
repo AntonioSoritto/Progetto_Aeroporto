@@ -13,13 +13,15 @@ import java.util.List;
 
 public class UTENTE {
     private JButton effettuaPrenotazioneButton;
-    private JComboBox comboBox1;
+    private JComboBox <String> comboBox1;
     private JTextField textField1;
-    private JPanel Panel1;
+    private JPanel panel1;
     private JButton cercaButton;
     private JButton logoutButton;
-    private JTextField IDPrenotazioneTextField;
-    private JButton CercaID;
+    private JTextField iDPrenotazioneTextField;
+    private JButton cercaID;
+    private String a= "Attenzione";
+    private String errore ="Errore";
 
     public UTENTE() {
         logoutButton.addActionListener(e -> {
@@ -47,7 +49,7 @@ public class UTENTE {
                     try {
                         int numero = Integer.parseInt(valore);
                         risultati = Controller.cercaPerNumeroVolo(numero);
-                    } catch (NumberFormatException | SQLException ex) {
+                    } catch (NumberFormatException _) {
                         JOptionPane.showMessageDialog(
                                 null,
                                 """
@@ -56,7 +58,7 @@ public class UTENTE {
                                 Il numero del volo inserito non è valido.
                                 Inserisci un valore corretto e riprova.
                                 """,
-                                "Errore",
+                                errore,
                                 JOptionPane.ERROR_MESSAGE
                         );
                         return;
@@ -73,7 +75,7 @@ public class UTENTE {
                                 ──────────────
                                 Inserisci nome e cognome separati da uno spazio.
                                 """,
-                                "Errore",
+                                errore,
                                 JOptionPane.ERROR_MESSAGE
                         );
                         return;
@@ -93,18 +95,19 @@ public class UTENTE {
                                 Si è verificato un errore durante l’accesso al database.
                                 Riprova più tardi o verifica la connessione.
                                 """,
-                                "Errore",
+                                errore,
                                 JOptionPane.ERROR_MESSAGE
                         );
                         return;
                     }
                     break;
 
+
                 case "ID prenotazione":
                     try {
                         int id = Integer.parseInt(valore);
                         risultati = Controller.cercaPerIdPrenotazione(id);
-                    } catch (NumberFormatException | SQLException ex) {
+                    } catch (NumberFormatException  _) {
                         JOptionPane.showMessageDialog(
                                 null,
                                 """
@@ -113,16 +116,17 @@ public class UTENTE {
                                 L'ID inserito non è valido.
                                 Inserisci un valore corretto e riprova.
                                 """,
-                                "Errore",
+                                errore,
                                 JOptionPane.ERROR_MESSAGE
                         );
                         return;
                     }
                     break;
+                default: JOptionPane.showMessageDialog(null, "Criterio non riconosciuto", a, JOptionPane.WARNING_MESSAGE); return;
             }
 
             if (risultati.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Nessun volo trovato", "Attenzione", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nessun volo trovato", a, JOptionPane.WARNING_MESSAGE);
             } else {
                 StringBuilder sb = new StringBuilder("Risultati:\n");
                 for (Volo v : risultati) {
@@ -145,14 +149,14 @@ public class UTENTE {
             }
         });
 
-        CercaID.addActionListener(e -> {
-            String valore = IDPrenotazioneTextField.getText().trim();
+        cercaID.addActionListener(e -> {
+            String valore = iDPrenotazioneTextField.getText().trim();
 
             if (valore.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         null,
                         "⚠️ Inserisci un ID prenotazione valido.",
-                        "Attenzione",
+                        a,
                         JOptionPane.WARNING_MESSAGE
                 );
                 return;
@@ -198,7 +202,7 @@ public class UTENTE {
                     );
                 }
 
-            } catch (NumberFormatException ex) {
+            } catch (NumberFormatException _) {
                 JOptionPane.showMessageDialog(
                         null,
                         "❌ L'ID deve essere un numero intero.",
@@ -219,7 +223,7 @@ public class UTENTE {
 
 
     public JPanel getPanel() {
-        return Panel1;
+        return panel1;
     }
 
 }

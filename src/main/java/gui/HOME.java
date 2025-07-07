@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class HOME {
     private JTextField textField1;
-    private JLabel messaggio;
+    private JLabel messaggio; //Questa label è utilizzata esclusivamente per dare il benvenuto all'utente
     private JPasswordField passwordField1;
     private JButton volaButton;
     private JPanel panel;

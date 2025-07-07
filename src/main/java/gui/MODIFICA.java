@@ -15,16 +15,17 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class MODIFICA {
-    private Volo volo;
 
-    private JTextField IMPOSTANUOVOGATETextField;
+    private Volo volo;
+    private JTextField impostaGateTextField;
     private JComboBox<String> comboBox2;
     private JComboBox<StatoVolo> comboBox5;
     private JButton confermaButton;
     private JPanel panelModifica;
     private JButton indietroButton;
     private JLabel tratta;
-    private JTextField Text1;
+    private String err="Errore";
+    private JTextField text1;
 
     public MODIFICA(Volo volo) {
         this.volo = volo;
@@ -34,7 +35,7 @@ public class MODIFICA {
         }
 
         if (volo.getOraVoloPrevista() != null) {
-            Text1.getText();
+            text1.getText();
         }
 
         if (volo.getDataVolo() != null) {
@@ -50,18 +51,18 @@ public class MODIFICA {
         });
 
         confermaButton.addActionListener(e -> {
-            int numeroGate = Integer.parseInt(IMPOSTANUOVOGATETextField.getText().trim());
+            int numeroGate = Integer.parseInt(impostaGateTextField.getText().trim());
 
             String statoSelezionato = comboBox5.getSelectedItem().toString();
             StatoVolo nuovoStato = StatoVolo.valueOf(statoSelezionato);
             String dataSelezionata = (String) comboBox2.getSelectedItem();
-            String orarioInserito = Text1.getText();
-            String ritardoInserito = Text1.getText().trim();
+            String orarioInserito = text1.getText();
+            String ritardoInserito = text1.getText().trim();
             LocalTime nuovoRitardo;
 
             try {
                 nuovoRitardo = LocalTime.parse(ritardoInserito);
-            } catch (Exception ex) {
+            } catch (Exception _) {
                 JOptionPane.showMessageDialog(
                         null,
                         """
@@ -70,7 +71,7 @@ public class MODIFICA {
                         Ritardo non valido.
                         Usa il formato corretto: HH:mm (es. 14:30).
                         """,
-                        "Errore",
+                        err,
                         JOptionPane.ERROR_MESSAGE
                 );
                 return;
@@ -82,7 +83,7 @@ public class MODIFICA {
 
                 try {
                     nuovoOrario = LocalTime.parse(orarioInserito);
-                } catch (Exception ex) {
+                } catch (Exception _) {
                     JOptionPane.showMessageDialog(
                             null,
                             """
@@ -91,7 +92,7 @@ public class MODIFICA {
                             Formato orario non valido.
                             Usa il formato corretto: HH:mm (es. 09:45).
                             """,
-                            "Errore",
+                            err,
                             JOptionPane.ERROR_MESSAGE
                     );
                     return;
@@ -126,7 +127,7 @@ public class MODIFICA {
                         Si è verificato un errore durante l’aggiornamento del volo.
                         Riprova oppure verifica i dati inseriti.
                         """,
-                        "Errore",
+                        err,
                         JOptionPane.ERROR_MESSAGE
                 );
             }

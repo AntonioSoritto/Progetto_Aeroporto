@@ -9,7 +9,7 @@ public class ModificaPrenotazione {
 
     private JButton confermaButton;
     private Prenotazione prenotazione;
-    private JComboBox comboBox1;
+    private JComboBox <String> comboBox1;
     private JButton indietroButton;
     private JPanel panel1;
 

@@ -8,11 +8,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class EffettuaPrenotazione {
-    private JComboBox comboBox1;
+    private JComboBox <String> comboBox1;
     private JTextField nomeTextField;
     private JTextField cognomeTextField;
     private JTextField iDDocumentoTextField;
-    private JComboBox comboBox2;
+    private JComboBox <String> comboBox2;
     private JButton prenotaButton;
     private JPanel panel1;
     private JButton indietroButton;

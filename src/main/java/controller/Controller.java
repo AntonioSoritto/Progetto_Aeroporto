@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Controller {
 
+    private Controller() {}
     public static void apriUtente() {
 
         UTENTE utente = new UTENTE();
@@ -49,7 +50,7 @@ public class Controller {
 
 
     public static void apriArrivo() {
-        V_ORIGINE v = new V_ORIGINE();
+        VoloOrig v = new VoloOrig();
         JFrame frame = new JFrame("Inserisci Arrivo");
         frame.setContentPane(v.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -59,7 +60,7 @@ public class Controller {
     }
 
     public static void apriPartenza() {
-        V_DESTINAZIONE v = new V_DESTINAZIONE();
+        VoloDest v = new VoloDest();
         JFrame frame = new JFrame("Inserisci Partenza");
         frame.setContentPane(v.getPanel());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -105,7 +106,7 @@ public class Controller {
     }
 
 
-    public static List<Volo> cercaPerNumeroVolo(int numero) throws SQLException {
+    public static List<Volo> cercaPerNumeroVolo(int numero) {
 
         VoloDAO dao = new VoloImplementazionePostgresDAO();
     return dao.cercaPerNumeroVolo(numero);
@@ -118,7 +119,7 @@ public class Controller {
         return dao.cercaPerNomeIntestatario(nome, cognome);
     }
 
-    public static List<Volo> cercaPerIdPrenotazione(int id) throws SQLException {
+    public static List<Volo> cercaPerIdPrenotazione(int id) {
 
         VoloDAO dao = new VoloImplementazionePostgresDAO();
     return dao.cercaPerIdPrenotazione(id);

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class PRENOTAZIONE {
     private JTextField inserisciDestinazioneTextField;
-    private JComboBox comboBox1;
+    private JComboBox <String> comboBox1;
     private JButton trovaButton;
     private JPanel panel1;
     private JButton indietroButton;

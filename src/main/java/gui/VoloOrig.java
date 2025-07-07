@@ -1,63 +1,65 @@
 package gui;
 
 import controller.Controller;
+import model.Gate;
 import model.StatoVolo;
-import model.VoloDestinazione;
+import model.VoloOrigine;
 
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class V_DESTINAZIONE {
+public class VoloOrig {
     private JTextField textField1;
     private JTextField compagniaTextField;
-    private JTextField aeroportoOrigineTextField;
-    private JComboBox comboBox1;
-    private JComboBox comboBox5;
+    private JTextField gateTextField;
+    private JTextField aeroportoDOrigineTextField;
+    private JComboBox <String> comboBox1;
     private JButton aggiungiButton;
-    private JPanel PANEL;
+    private JComboBox <String> comboBox5;
+    private JPanel panel1;
     private JButton indietroButton;
-    private JTextField ora;
+    private JTextField oraTextField;
 
-    public V_DESTINAZIONE()
-
-    {
+    public VoloOrig() {
         indietroButton.addActionListener(e -> {
-            SwingUtilities.getWindowAncestor(indietroButton).dispose();
-            Controller.apriAmministratore();
 
+            SwingUtilities.getWindowAncestor(indietroButton).dispose();
+
+            Controller.apriAmministratore();
         });
 
         aggiungiButton.addActionListener(e -> {
             try {
                 int idVolo = Integer.parseInt(textField1.getText().trim());
                 String compagnia = compagniaTextField.getText().trim();
-                String origine = aeroportoOrigineTextField.getText().trim();
+                String destinazione = aeroportoDOrigineTextField.getText().trim();
+                int idGate = Integer.parseInt(gateTextField.getText().trim());
                 LocalDate data = LocalDate.parse(comboBox1.getSelectedItem().toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                LocalTime ora1 = LocalTime.parse(ora.getText().trim());
-
+                LocalTime ora = LocalTime.parse(oraTextField.getText().trim());
                 String statoStr = (String) comboBox5.getSelectedItem();
                 StatoVolo stato = StatoVolo.valueOf(statoStr);
 
-                VoloDestinazione volo = new VoloDestinazione();
+                VoloOrigine volo = new VoloOrigine();
                 volo.setIdVolo(idVolo);
                 volo.setCompagnia(compagnia);
-                volo.setaVoloOrigine(origine);
-                volo.setaVoloDestinazione("Napoli");  // fisso
+                volo.setaVoloOrigine("Napoli");
+                volo.setaVoloDestinazione(destinazione);
                 volo.setDataVolo(data);
-                volo.setOraVoloPrevista(ora1);
+                volo.setOraVoloPrevista(ora);
                 volo.setStato(stato);
-                volo.setRitardo(null);
-
-                Controller.aggiungiVoloDestinazione(volo);
+                Gate gate = new Gate();
+                gate.setidGate(idGate);
+                volo.setImbarco(gate);
+                Controller.aggiungiVoloOrigine(volo);
 
                 JOptionPane.showMessageDialog(
-                        PANEL,
+                        panel1,
                         """
                         ✅ Successo
                         ─────────────────────────
-                        Il volo in arrivo è stato aggiunto correttamente.
+                        Il volo in partenza è stato aggiunto correttamente.
                         """,
                         "Volo aggiunto",
                         JOptionPane.INFORMATION_MESSAGE
@@ -66,7 +68,7 @@ public class V_DESTINAZIONE {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(
-                        PANEL,
+                        panel1,
                         """
                         ❌ Errore
                         ──────────────
@@ -81,6 +83,7 @@ public class V_DESTINAZIONE {
     }
 
     public JPanel getPanel() {
-        return PANEL;
+        return panel1;
     }
+
 }
