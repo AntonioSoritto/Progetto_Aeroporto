@@ -9,6 +9,7 @@ import java.awt.*;
  * Consente all'amministratore di aggiornare rapidamente lo stato di una prenotazione già esistente.
  */
 
+
 public class ModificaPrenotazione {
     /** Bottone per confermare e salvare le modifiche effettuate sulla prenotazione. */
 
