@@ -9,8 +9,10 @@ import java.sql.*;
 public class ConnessioneDatabase {
     /** Istanza Singleton della classe */
 
+
     private static ConnessioneDatabase instance;
     /** Oggetto di connessione al database */
+
 
     public Connection connection = null;
     // Credenziali e informazioni di connessione (in un'app reale, valuta di proteggerle opportunamente)
