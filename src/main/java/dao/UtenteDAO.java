@@ -96,3 +96,4 @@ public interface UtenteDAO {
      */
     void inserisciUtente(Utente nuovo) throws SQLException;
 }
+
